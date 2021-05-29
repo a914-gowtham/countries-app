@@ -1,9 +1,11 @@
 package com.gowtham.template.models
 
 import android.os.Parcelable
+import androidx.room.Entity
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+@Entity
 data class Country(
     val alpha2Code: String,
     val alpha3Code: String,

@@ -30,6 +30,7 @@ object Dependencies {
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPlugin}"
     const val coil = "io.coil-kt:coil:1.2.1"
     const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
     const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.21"
 
     /* plugin */
@@ -74,6 +75,7 @@ object Dependencies {
         add(material)
         add(constraintLayout)
         add(coil)
+        add(ktSerializer)
         add(mutliDex)
         add(actKtx)
         add(lottie)

@@ -4,7 +4,10 @@ import android.widget.ImageView
 import coil.load
 import coil.request.CachePolicy
 import coil.transform.CircleCropTransformation
-import com.gowtham.template.R
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import retrofit2.converter.gson.GsonConverterFactory
+
 
 object Utils {
 

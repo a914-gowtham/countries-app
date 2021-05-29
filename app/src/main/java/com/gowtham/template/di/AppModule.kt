@@ -1,6 +1,7 @@
 package com.gowtham.template.di
 
 import com.gowtham.template.api.ApiService
+import com.gowtham.template.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,8 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
-    private const val BASE_URL = "https://restcountries.eu/rest/v2/"
 
     @Singleton
     @Provides
