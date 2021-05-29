@@ -1,21 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.FList">
+    <LinearLayout style="@style/FView">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
+        <androidx.cardview.widget.CardView
+            style="@style/VView"
+            android:layout_margin="16dp"
+            app:cardBackgroundColor="@color/grey"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp">
 
-    </FrameLayout>
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                style="@style/LView"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                tools:context=".fragments.list.FList" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list_country"
+            android:padding="16dp"
+            style="@style/StyleList" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/WVView"
+            android:id="@+id/get_countries"
+            android:text="Get Countries"/>
+    </LinearLayout>
+
+
 </layout>

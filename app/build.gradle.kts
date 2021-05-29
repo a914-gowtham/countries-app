@@ -4,8 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
-    id("kotlinx-serialization")
-    id("kotlin-android")
+    id("kotlin-parcelize")
 }
 
 android {
@@ -33,7 +32,6 @@ android {
     }
 
     viewBinding {
-        android.buildFeatures.viewBinding = true
         android.buildFeatures.dataBinding = true
     }
 
@@ -50,7 +48,7 @@ android {
 
 dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("com.squareup.retrofit2:converter-gson:2.3.0")
     implementations(Dependencies.appLibraries)
     kapts(Dependencies.kaptLibraries)
     testImplementations(Dependencies.testLibraries)

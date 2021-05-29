@@ -1,5 +1,9 @@
 package com.gowtham.template.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Translations(
     val br: String,
     val de: String,
@@ -11,4 +15,4 @@ data class Translations(
     val ja: String,
     val nl: String,
     val pt: String
-)
+) : Parcelable

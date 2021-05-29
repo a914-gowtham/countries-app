@@ -30,7 +30,6 @@ object Dependencies {
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPlugin}"
     const val coil = "io.coil-kt:coil:1.2.1"
     const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-    const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
     const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.21"
 
     /* plugin */
@@ -45,9 +44,7 @@ object Dependencies {
     const val mutliDex = "androidx.multidex:multidex:2.0.1"
     const val actKtx = "androidx.activity:activity-ktx:1.2.3"
     const val lottie = "com.airbnb.android:lottie:3.7.0"
-    const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:1.5.0"
     const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
-    const val moshiConverter = "com.squareup.retrofit2:converter-moshi:2.6.2"
     const val logging = "com.squareup.okhttp3:logging-interceptor:4.5.0"
 
     /* jetpack libraries */
@@ -67,7 +64,6 @@ object Dependencies {
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 
     /* kapt */
-    const val dataBinding = "com.android.databinding:compiler:3.1.4" //Databinding compiler
     const val hiltKapt = "com.google.dagger:hilt-android-compiler:2.36"  //Hilt
     const val roomKapt = "androidx.room:room-compiler:2.4.0-alpha02" //Room
 
@@ -78,13 +74,10 @@ object Dependencies {
         add(material)
         add(constraintLayout)
         add(coil)
-        add(ktSerializer)
         add(mutliDex)
         add(actKtx)
         add(lottie)
-        add(moshiKotlin)
         add(retrofit)
-        add(moshiConverter)
         add(logging)
         add(ktReflect)
 
@@ -98,7 +91,6 @@ object Dependencies {
     }
 
     val kaptLibraries = arrayListOf<String>().apply {
-        add(dataBinding)
         add(hiltKapt)
         add(roomKapt)
     }

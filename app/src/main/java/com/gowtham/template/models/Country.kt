@@ -1,6 +1,10 @@
 package com.gowtham.template.models
 
-data class CountriesItem(
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Country(
     val alpha2Code: String,
     val alpha3Code: String,
     val altSpellings: List<String>,
@@ -25,4 +29,4 @@ data class CountriesItem(
     val timezones: List<String>,
     val topLevelDomain: List<String>,
     val translations: Translations
-)
+) : Parcelable

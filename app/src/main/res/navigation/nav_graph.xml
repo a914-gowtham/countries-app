@@ -6,7 +6,7 @@
     app:startDestination="@id/FList">
 
     <fragment android:id="@+id/FList"
-        android:name="com.gowtham.template.fragments.FList"
+        android:name="com.gowtham.template.fragments.list.FList"
         android:label="FList"
         tools:layout="@layout/f_list">
 
@@ -21,7 +21,7 @@
     </fragment>
 
     <fragment android:id="@+id/FDetail"
-        android:name="com.gowtham.template.fragments.FDetail"
+        android:name="com.gowtham.template.fragments.detail.FDetail"
         android:label="FDetail"
         tools:layout="@layout/f_detail">
 
@@ -29,7 +29,7 @@
             android:defaultValue="@null"
             app:nullable="true"
             android:name="countryDetail"
-            app:argType="com.gowtham.template.models.CountriesItem"/>
+            app:argType="com.gowtham.template.models.Country"/>
 
     </fragment>
 

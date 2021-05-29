@@ -6,7 +6,7 @@ plugins {
 }
 
 buildscript {
-    val kotlin_version by extra("1.5.10-release-894")
+
     repositories {
         google()
         mavenCentral()
@@ -16,8 +16,6 @@ buildscript {
         classpath(Dependencies.kotlinPlugin)
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
         classpath("com.google.dagger:hilt-android-gradle-plugin:2.36")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.5.10")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
