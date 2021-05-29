@@ -10,7 +10,6 @@ import java.io.IOException
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
-    @ApplicationContext private val context: Context,
     private val apiHelperImpl: ApiHelperImpl,
     private val countryDao: CountryDao
 ) {

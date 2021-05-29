@@ -1,6 +1,9 @@
 package com.gowtham.template.utils
 
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import androidx.core.view.setPadding
 import androidx.core.widget.ImageViewCompat
 import androidx.databinding.BindingAdapter
@@ -14,6 +17,32 @@ object BindingAdapters {
         Utils.loadImage(view, url)
     }
 
+    @BindingAdapter("showOnSuccess")
+    @JvmStatic
+    fun showOnSuccess(view: LinearLayout, state: LoadState) {
+        if(state is LoadState.OnSuccess)
+            view.show()
+        else
+            view.gone()
+    }
+
+    @BindingAdapter("showOnLoading")
+    @JvmStatic
+    fun showOnLoading(view: ProgressBar, state: LoadState) {
+        if(state is LoadState.OnLoading)
+            view.show()
+        else
+            view.gone()
+    }
+
+    @BindingAdapter("showOnFailure")
+    @JvmStatic
+    fun showOnFailure(view: View, state: LoadState) {
+        if(state is LoadState.OnFailure)
+            view.show()
+        else
+            view.gone()
+    }
 
 
 }

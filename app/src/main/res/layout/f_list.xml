@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    >
 
     <data>
 
+        <import type="android.view.View" />
+
+        <import type="com.gowtham.template.utils.LoadState" />
+
+        <variable
+            name="currentState"
+            type="com.gowtham.template.utils.LoadState" />
+
+        <variable
+            name="viewmodel"
+            type="com.gowtham.template.fragments.list.ListViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        style="@style/FView">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout style="@style/FView">
 
         <LinearLayout style="@style/FView">
 
@@ -22,45 +33,49 @@
                     app:titleTextColor="@color/white" />
             </com.google.android.material.appbar.AppBarLayout>
 
+            <LinearLayout
+                style="@style/VWView"
+                showOnSuccess="@{currentState}">
 
-            <androidx.cardview.widget.CardView
-                style="@style/VView"
-                android:id="@+id/card_view"
-                android:layout_margin="16dp"
-                app:cardBackgroundColor="@color/grey"
-                app:cardCornerRadius="16dp"
-                app:cardElevation="6dp">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_view"
+                    style="@style/VView"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/grey"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="6dp">
 
-                <androidx.appcompat.widget.SearchView
-                    android:id="@+id/search_view"
-                    style="@style/LView"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
-                    tools:context=".fragments.list.FList" />
-            </androidx.cardview.widget.CardView>
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/search_view"
+                        style="@style/LView"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginEnd="12dp"
+                        tools:context=".fragments.list.FList" />
+                </androidx.cardview.widget.CardView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/list_country"
-                style="@style/StyleList"
-                android:paddingStart="16dp"
-                android:paddingTop="14dp"
-                android:paddingEnd="16dp"
-                tools:listitem="@layout/row_country" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_country"
+                    style="@style/StyleList"
+                    android:paddingStart="16dp"
+                    android:paddingTop="14dp"
+                    android:paddingEnd="16dp"
+                    tools:listitem="@layout/row_country" />
+
+            </LinearLayout>
 
             <ProgressBar
                 android:id="@+id/progress_circular"
                 style="@style/WVView"
+                showOnLoading="@{currentState}"
+                android:layout_marginTop="30dp"
                 android:layout_gravity="center" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_retry"
-            style="@style/WVView"
-            android:layout_gravity="center"
-            android:text="@string/retry"
-            android:visibility="gone" />
+        <include
+            layout="@layout/view_no_internet"
+            android:id="@+id/view_no_internet"
+            app:viewmodel="@{viewmodel}"
+            showOnFailure="@{currentState}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
 </layout>

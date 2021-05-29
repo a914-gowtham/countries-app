@@ -50,12 +50,14 @@ class FList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.viewmodel = viewModel
         setRecyclerView()
         setObservers()
     }
 
     private fun setRecyclerView() {
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        val staggeredGridLayoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.listCountry.apply {
             layoutManager = staggeredGridLayoutManager
             itemAnimator = null
@@ -72,7 +74,7 @@ class FList : Fragment() {
         })
 
         adChat.setOnItemClickListener {
-            val action= FListDirections.actionFListToFDetail(countryDetail = it)
+            val action = FListDirections.actionFListToFDetail(countryDetail = it)
             findNavController().navigate(action)
         }
     }
@@ -81,22 +83,11 @@ class FList : Fragment() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 LogMessage.v("State $state")
-                when (state) {
-                    is LoadState.OnFailure -> {
-                        binding.btnRetry.show()
-                        binding.progressCircular.gone()
-                    }
-                    is LoadState.OnSuccess -> {
-                        adChat.submitList(state.data as List<Country>)
-                        binding.btnRetry.gone()
-                        binding.progressCircular.gone()
-                    }
-                    else -> {
-                        binding.cardView.gone()
-                        binding.btnRetry.gone()
-                        binding.progressCircular.show()
-                    }
-                }
+                binding.currentState = state
+                if (state is LoadState.OnSuccess)
+                    adChat.submitList(state.data as List<Country>)
+                else if(state is LoadState.OnFailure)
+                    binding.viewNoInternet.lottieView.playAnimation()
             }
         }
     }
