@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.gowtham.template.R
+import retrofit2.Response
 
 fun Context.toast(msg: String){
    Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
@@ -75,3 +76,4 @@ fun  <T, VH : RecyclerView.ViewHolder> ListAdapter<T,VH>.addRestorePolicy(){
     stateRestorationPolicy =
         RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 }
+

@@ -50,6 +50,7 @@ android {
 dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementation("com.squareup.retrofit2:converter-gson:2.3.0")
+    implementation("io.coil-kt:coil-svg:1.2.1")
     implementations(Dependencies.appLibraries)
     kapts(Dependencies.kaptLibraries)
     testImplementations(Dependencies.testLibraries)

@@ -10,6 +10,7 @@ object BindingAdapters {
     @BindingAdapter("imageUrl")
     @JvmStatic
     fun loadImage(view: ImageView, url: String) {
+        LogMessage.v("Image url $url")
         Utils.loadImage(view, url)
     }
 

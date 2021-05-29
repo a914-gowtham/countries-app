@@ -3,5 +3,6 @@
 
     <string name="err_no_net">No Internet Connection</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="retry">Retry</string>
 
 </resources>

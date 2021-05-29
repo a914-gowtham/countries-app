@@ -8,7 +8,7 @@ sealed class LoadState {
         }
     }
 
-    class OnFailure(val e: Exception): LoadState(){
+    class OnFailure(val errorMsg: String): LoadState(){
         override fun toString(): String {
             return "OnFailure State"
         }
