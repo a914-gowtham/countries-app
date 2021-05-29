@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.gowtham.template.R
 import com.gowtham.template.databinding.FListBinding
 import com.gowtham.template.models.Country
 import com.gowtham.template.utils.LoadState
@@ -48,11 +50,17 @@ class FList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.listCountry.hasFixedSize()
-        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
-        binding.listCountry.layoutManager = staggeredGridLayoutManager
-        binding.listCountry.itemAnimator = null
-        binding.listCountry.adapter = adChat
+        setRecyclerView()
+        setObservers()
+    }
+
+    private fun setRecyclerView() {
+        val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.listCountry.apply {
+            layoutManager = staggeredGridLayoutManager
+            itemAnimator = null
+            adapter = adChat
+        }
         binding.listCountry.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -64,9 +72,9 @@ class FList : Fragment() {
         })
 
         adChat.setOnItemClickListener {
-            LogMessage.v("${it.name} clicked")
+            val action= FListDirections.actionFListToFDetail(countryDetail = it)
+            findNavController().navigate(action)
         }
-        setObservers()
     }
 
     private fun setObservers() {
@@ -84,6 +92,7 @@ class FList : Fragment() {
                         binding.progressCircular.gone()
                     }
                     else -> {
+                        binding.cardView.gone()
                         binding.btnRetry.gone()
                         binding.progressCircular.show()
                     }

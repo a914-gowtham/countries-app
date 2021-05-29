@@ -10,6 +10,8 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.CachePolicy
 import coil.request.ImageRequest
+import com.bumptech.glide.Glide
+import com.gowtham.template.R
 import com.gowtham.template.databinding.RowCountryBinding
 import com.gowtham.template.models.Country
 
@@ -36,6 +38,7 @@ class AdCountries :
 
         fun bind(item: Country, onItemClickListener: ((Country) -> Unit)?) {
             binding.country = item
+            binding.imageView.requestFocus()
             binding.root.setOnClickListener {
                 onItemClickListener?.invoke(item)
             }
@@ -47,6 +50,14 @@ class AdCountries :
 
     fun setOnItemClickListener(listener: (Country) -> Unit) {
         onItemClickListener = listener
+    }
+
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return position
     }
 
 }

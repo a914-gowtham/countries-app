@@ -13,17 +13,13 @@ class TypeConverter {
 
     /* List of Currency */
     @TypeConverter
-    fun fromCurrencyToString(currency: List<Currency>?): String? {
-        return currency?.run {
-            Json.encodeToString(this)
-        }
+    fun fromCurrencyToString(currency: List<Currency>): String {
+        return Json.encodeToString(currency)
     }
 
     @TypeConverter
-    fun fromStringToCurrency(currency: String?): List<Currency>? {
-        return currency?.run {
-            Json.decodeFromString(this)
-        }
+    fun fromStringToCurrency(currency: String): List<Currency> {
+        return Json.decodeFromString(currency)
     }
 
     /* List of Language */

@@ -42,15 +42,19 @@ class ListViewModel @Inject constructor(
     }
 
     private suspend fun fetchAllCountries() {
-       val result= mainRepo.getAllCountries()
-        if(result is LoadState.OnSuccess)
-            lastFetchedList.value= result.data as List<Country>
-        _resultState.value=result
+        val result = mainRepo.getAllCountries()
+        if (result is LoadState.OnSuccess)
+            lastFetchedList.value = result.data as List<Country>
+        _resultState.value = result
     }
 
 
     fun searchCountry(searchQuery: String) = viewModelScope.launch {
-        fetchQueriedCountries(searchQuery)
+        lastQuery=searchQuery
+        if (searchQuery.isBlank())
+            fetchQueriedCountries(searchQuery)
+        else
+            fetchQueriedCountries(searchQuery)
     }
 
 

@@ -7,7 +7,8 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout style="@style/FView">
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        style="@style/FView">
 
         <LinearLayout style="@style/FView">
 
@@ -24,6 +25,7 @@
 
             <androidx.cardview.widget.CardView
                 style="@style/VView"
+                android:id="@+id/card_view"
                 android:layout_margin="16dp"
                 app:cardBackgroundColor="@color/grey"
                 app:cardCornerRadius="16dp"
