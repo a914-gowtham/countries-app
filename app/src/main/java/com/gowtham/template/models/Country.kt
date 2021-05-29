@@ -2,11 +2,15 @@ package com.gowtham.template.models
 
 import android.os.Parcelable
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 @Entity
 data class Country(
+    @PrimaryKey
+    var id: Int? = null,
+    val name: String,
     val alpha2Code: String,
     val alpha3Code: String,
     val altSpellings: List<String>,
@@ -21,7 +25,6 @@ data class Country(
     val gini: Double,
     val languages: List<Language>,
     val latlng: List<Double>,
-    val name: String,
     val nativeName: String,
     val numericCode: String,
     val population: Int,

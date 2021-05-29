@@ -11,7 +11,7 @@
         tools:layout="@layout/f_list">
 
         <action
-            android:id="@+id/action_FLogIn_to_FCountries"
+            android:id="@+id/action_FList_to_FDetail"
             app:destination="@id/FDetail"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

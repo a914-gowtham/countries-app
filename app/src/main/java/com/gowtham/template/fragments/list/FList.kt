@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.gowtham.template.R
 import com.gowtham.template.databinding.FDetailBinding
 import com.gowtham.template.databinding.FListBinding
@@ -36,7 +38,7 @@ class FList : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.getCountries.setOnClickListener {
-            viewModel.callListApi()
+            findNavController().navigate(R.id.action_FList_to_FDetail)
         }
     }
 }

@@ -2,8 +2,10 @@ package com.gowtham.template.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 
 @Parcelize
+@Serializable
 data class Translations(
     val br: String,
     val de: String,

@@ -12,10 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.gowtham.template.R
 
-fun String.printMeD(){
-    Log.d("LetsChat:: ",this)
-}
-
 fun Context.toast(msg: String){
    Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
 }

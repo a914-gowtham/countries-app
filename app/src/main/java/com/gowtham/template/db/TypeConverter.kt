@@ -11,40 +11,40 @@ import kotlinx.serialization.decodeFromString
 
 class TypeConverter {
 
-    /* Currency */
+    /* List of Currency */
     @TypeConverter
-    fun fromCurrencyToString(currency: Currency): String {
+    fun fromCurrencyToString(currency: List<Currency>): String {
         return Json.encodeToString(currency)
     }
 
     @TypeConverter
-    fun fromStringToCurrency(currency: String): Currency {
+    fun fromStringToCurrency(currency: String): List<Currency> {
         return Json.decodeFromString(currency)
     }
 
-    /* Language */
+    /* List of Language */
     @TypeConverter
-    fun fromLanguageToString(language: Language): String {
+    fun fromLanguageToString(language: List<Language>): String {
         return Json.encodeToString(language)
     }
 
     @TypeConverter
-    fun fromStringToLanguage(language: String): Language {
+    fun fromStringToLanguage(language: String): List<Language> {
         return Json.decodeFromString(language)
     }
 
-    /* RegionalBloc */
+    /* List of RegionalBloc */
     @TypeConverter
-    fun fromRegionalBlocToString(regionalBloc: RegionalBloc): String {
+    fun fromRegionalBlocToString(regionalBloc: List<RegionalBloc>): String {
         return Json.encodeToString(regionalBloc)
     }
 
     @TypeConverter
-    fun fromStringToRegionalBloc(regionalBloc: String): RegionalBloc {
+    fun fromStringToRegionalBloc(regionalBloc: String): List<RegionalBloc> {
         return Json.decodeFromString(regionalBloc)
     }
 
-    /* Translations */
+    /* List of Translations */
     @TypeConverter
     fun fromTranslationsToString(translations: Translations): String {
         return Json.encodeToString(translations)

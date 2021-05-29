@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 interface CountryDao {
 
     @Query("SELECT * FROM Country")
-    suspend fun getAllCountries(): Flow<List<Country>>
+    fun getAllCountries(): Flow<List<Country>>
 
     @Query("SELECT * FROM Country WHERE name LIKE '%' || :query || '%'")
-    suspend fun getQueriedCountries(query: String): Flow<List<Country>>
+    fun getQueriedCountries(query: String): Flow<List<Country>>
 }
