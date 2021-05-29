@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/FList">
+
+    <fragment android:id="@+id/FList"
+        android:name="com.gowtham.template.fragments.FList"
+        android:label="FList"
+        tools:layout="@layout/f_list">
+
+        <action
+            android:id="@+id/action_FLogIn_to_FCountries"
+            app:destination="@id/FDetail"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment android:id="@+id/FDetail"
+        android:name="com.gowtham.template.fragments.FDetail"
+        android:label="FDetail"
+        tools:layout="@layout/f_detail">
+
+        <argument
+            android:defaultValue="@null"
+            app:nullable="true"
+            android:name="countryDetail"
+            app:argType="com.gowtham.template.models.CountriesItem"/>
+
+    </fragment>
+
+</navigation>

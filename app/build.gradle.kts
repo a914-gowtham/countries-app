@@ -50,6 +50,7 @@ android {
 
 dependencies {
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
     implementations(Dependencies.appLibraries)
     kapts(Dependencies.kaptLibraries)
     testImplementations(Dependencies.testLibraries)
