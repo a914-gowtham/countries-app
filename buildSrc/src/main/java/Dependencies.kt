@@ -29,6 +29,7 @@ object Dependencies {
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPlugin}"
     const val coil = "io.coil-kt:coil:1.2.1"
+    const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
     const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.21"
 
@@ -71,6 +72,7 @@ object Dependencies {
     const val roomKapt = "androidx.room:room-compiler:2.4.0-alpha02" //Room
 
     val appLibraries = arrayListOf<String>().apply {
+        add(ktStdLib)
         add(appCompat)
         add(coreKtx)
         add(material)

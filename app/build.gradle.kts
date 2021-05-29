@@ -5,6 +5,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("androidx.navigation.safeargs.kotlin")
     id("kotlinx-serialization")
+    id("kotlin-android")
 }
 
 android {
@@ -48,6 +49,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     implementations(Dependencies.appLibraries)
     kapts(Dependencies.kaptLibraries)
     testImplementations(Dependencies.testLibraries)

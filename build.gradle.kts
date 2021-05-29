@@ -6,6 +6,7 @@ plugins {
 }
 
 buildscript {
+    val kotlin_version by extra("1.5.10-release-894")
     repositories {
         google()
         mavenCentral()

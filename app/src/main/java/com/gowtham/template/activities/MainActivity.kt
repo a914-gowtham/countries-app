@@ -1,7 +1,8 @@
-package com.gowtham.template
+package com.gowtham.template.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.gowtham.template.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
