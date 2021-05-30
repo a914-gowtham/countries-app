@@ -17,7 +17,7 @@ data class Country(
     val area: Double,
     val borders: List<String>,
     val callingCodes: List<String>,
-    val capital: String,
+    val capital: String?,
     val cioc: String?,
     val currencies: List<Currency>,
     val demonym: String,

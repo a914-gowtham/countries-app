@@ -8,28 +8,14 @@ import android.net.NetworkCapabilities.*
 import android.os.Build
 import android.provider.ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
 import android.widget.ImageView
-import coil.load
+import coil.ImageLoader
+import coil.decode.SvgDecoder
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import coil.size.ViewSizeResolver
-import coil.transform.CircleCropTransformation
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
-import com.gowtham.template.R
-import retrofit2.converter.gson.GsonConverterFactory
+import coil.transform.RoundedCornersTransformation
 
 
 object Utils {
-
-    fun loadImage(imageView: ImageView, imgUrl: String){
-        imageView.load(imgUrl) {
-            crossfade(true)
-            crossfade(300)
-            diskCachePolicy(CachePolicy.ENABLED)
-            placeholder(R.drawable.ic_launcher_background)
-            error(R.drawable.ic_launcher_background)
-        }
-    }
 
     fun hasInternetConnection(context: Context): Boolean {
         val connectivityManager = context.getSystemService(
@@ -55,5 +41,42 @@ object Utils {
             }
         }
         return false
+    }
+
+    fun ImageView.loadSvg(url: String) {
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(300)
+            .data(url)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
+    }
+
+    fun ImageView.loadSvg(url: String,cornerRadius: Float) {
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(300)
+            .data(url)
+            .transformations(RoundedCornersTransformation(cornerRadius))
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
+    }
+
+    fun clearNull(str: String?): String{
+        return if(str.isNullOrBlank()) "Data unavailable" else str
     }
 }

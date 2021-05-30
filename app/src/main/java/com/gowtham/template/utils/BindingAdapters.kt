@@ -4,17 +4,17 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
-import androidx.core.view.setPadding
-import androidx.core.widget.ImageViewCompat
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
+import com.gowtham.template.utils.Utils.loadSvg
 
 object BindingAdapters {
 
-    @BindingAdapter("imageUrl")
+    @BindingAdapter("app:imageUrl")
     @JvmStatic
-    fun loadImage(view: ImageView, url: String) {
-        LogMessage.v("Image url $url")
-        Utils.loadImage(view, url)
+    fun loadImage(imageView: ImageView, url: String) {
+
+        imageView.loadSvg(url,12f)
     }
 
     @BindingAdapter("showOnSuccess")
@@ -47,6 +47,11 @@ object BindingAdapters {
     @BindingAdapter("app:hideIfEmpty")  // Recommended solution
     @JvmStatic fun hideIfZero(view: View, number: Boolean) {
         view.visibility = if (number) View.GONE else View.VISIBLE
+    }
+
+    @BindingAdapter("app:nullableText")  // Recommended solution
+    @JvmStatic fun nullableText(txtView: TextView, str: String?) {
+        txtView.text=if(str.isNullOrBlank()) "Capital unavailable" else str
     }
 
 

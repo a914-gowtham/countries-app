@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    </data>
+
+    <LinearLayout style="@style/LView">
+
+        <RelativeLayout
+            style="@style/WVView"
+            android:background="@drawable/shape_detail_circle"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/txt_icon"
+                style="@style/WVView"
+                android:textSize="26sp"
+                tools:text="🌆" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/LWView"
+            android:layout_marginStart="8dp"
+            android:layout_gravity="center_vertical">
+
+            <TextView
+                style="@style/WView"
+                android:textSize="16sp"
+                android:id="@+id/txt_title"
+                tools:text="@string/txt_region" />
+
+            <TextView
+                style="@style/TxtBold"
+                android:id="@+id/txt_detail"
+                tools:text="South Asia" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

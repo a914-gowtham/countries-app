@@ -27,7 +27,6 @@ class FList : Fragment() {
 
     private lateinit var binding: FListBinding
 
-
     private val adChat: AdCountries by lazy {
         AdCountries()
     }

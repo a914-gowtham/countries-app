@@ -8,5 +8,34 @@
     <string name="err_net_desc">Slow or no internet connection. \n please check the internet settings</string>
     <string name="txt_search">Search</string>
     <string name="txt_no_countries_found">No countries found for the keywords.</string>
+    <string name="txt_more_info">More info</string>
 
+    <string name="txt_region">Region</string>
+    <string name="txt_popu">Population</string>
+    <string name="txt_lang">Languages</string>
+    <string name="txt_demonym">Demonym</string>
+    <string name="txt_currency">Currency</string>
+
+
+    <string name="emo_region">🌍</string>
+    <string name="emo_population">👨‍👩‍👧‍👦</string>
+    <string name="emo_languages">💬</string>
+    <string name="emo_demonym">🚀</string>
+    <string name="emo_currency">💵</string>
+
+    <string-array name="info_icons">
+        <item>@string/emo_region</item>
+        <item>@string/emo_population</item>
+        <item>@string/emo_languages</item>
+        <item>@string/emo_demonym</item>
+        <item>@string/emo_currency</item>
+    </string-array>
+
+    <string-array name="info_titles">
+        <item>@string/txt_region</item>
+        <item>@string/txt_popu</item>
+        <item>@string/txt_lang</item>
+        <item>@string/txt_demonym</item>
+        <item>@string/txt_currency</item>
+    </string-array>
 </resources>

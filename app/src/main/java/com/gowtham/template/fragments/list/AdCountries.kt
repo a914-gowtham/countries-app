@@ -2,18 +2,12 @@ package com.gowtham.template.fragments.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.ImageLoader
-import coil.decode.SvgDecoder
-import coil.request.CachePolicy
-import coil.request.ImageRequest
-import com.bumptech.glide.Glide
-import com.gowtham.template.R
 import com.gowtham.template.databinding.RowCountryBinding
 import com.gowtham.template.models.Country
+import com.gowtham.template.utils.Utils.loadSvg
 
 
 class AdCountries :
@@ -70,19 +64,4 @@ class DiffCallbackChats : DiffUtil.ItemCallback<Country>() {
     override fun areContentsTheSame(oldItem: Country, newItem: Country): Boolean {
         return oldItem == newItem
     }
-}
-fun ImageView.loadSvg(url: String) {
-    val imageLoader = ImageLoader.Builder(this.context)
-        .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
-        .build()
-
-    val request = ImageRequest.Builder(this.context)
-        .crossfade(true)
-        .crossfade(300)
-        .data(url)
-        .diskCachePolicy(CachePolicy.ENABLED)
-        .target(this)
-        .build()
-
-    imageLoader.enqueue(request)
 }
