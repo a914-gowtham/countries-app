@@ -1,4 +1,4 @@
-package com.gowtham.template.fragments.detail
+package com.gowtham.template.models
 
 data class Info(
     val icon: String,

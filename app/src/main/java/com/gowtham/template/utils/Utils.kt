@@ -10,6 +10,7 @@ import android.provider.ContactsContract.CommonDataKinds.Phone.TYPE_MOBILE
 import android.widget.ImageView
 import coil.ImageLoader
 import coil.decode.SvgDecoder
+import coil.load
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import com.gowtham.template.R
@@ -75,6 +76,16 @@ object Utils {
             .build()
 
         imageLoader.enqueue(request)
+    }
+
+    fun ImageView.loadImage(imageUrl: String){
+        this.load(imageUrl) {
+            crossfade(true)
+            crossfade(300)
+            diskCachePolicy(CachePolicy.ENABLED)
+          /*  placeholder(R.drawable.ic_other_user)
+            error(R.drawable.ic_other_user)*/
+        }
     }
 
     fun clearNull(str: String?): String{

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.gowtham.template.databinding.RowCountryBinding
 import com.gowtham.template.models.country.Country
+import com.gowtham.template.utils.Utils.loadSvg
 
 
 class AdCountries :

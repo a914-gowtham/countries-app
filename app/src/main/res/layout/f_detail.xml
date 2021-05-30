@@ -4,9 +4,19 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="country"
             type="com.gowtham.template.models.country.Country" />
+
+        <variable
+            name="weather"
+            type="com.gowtham.template.models.weather.Weather" />
+
+        <variable
+            name="currentState"
+            type="com.gowtham.template.utils.LoadState" />
 
     </data>
 
@@ -37,11 +47,32 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <ImageView
+            android:id="@+id/img_back"
             style="@style/WView"
             android:layout_margin="12dp"
             android:elevation="7dp"
-            android:id="@+id/img_back"
             android:src="@drawable/ic_arrow_back" />
+
+        <include
+            android:id="@+id/view_weather"
+            layout="@layout/view_weather"
+            showOnSuccess="@{currentState}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="12dp"
+            android:elevation="7dp"
+            app:weather="@{weather}" />
+
+        <ProgressBar
+            showOnLoading="@{currentState}"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp" />
+
 
         <androidx.core.widget.NestedScrollView
             style="@style/FView"
@@ -67,24 +98,24 @@
                     android:paddingTop="6dp"
                     android:paddingEnd="14dp"
                     android:paddingBottom="6dp"
+                    android:text="@{country.capital!=null &amp;&amp; country.capital.length()>0  ? country.capital : @string/txt_cap_unavailable}"
                     android:textColor="@color/white"
-                    android:textSize="16sp"
-                    app:nullableText="@{country.capital}" />
+                    android:textSize="16sp" />
 
                 <TextView
                     style="@style/WView"
                     android:layout_gravity="start"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/txt_more_info"
-                    android:layout_marginStart="8dp"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_detail"
-                    android:nestedScrollingEnabled="false"
+                    style="@style/StyleList"
                     android:layout_marginTop="6dp"
-                    style="@style/StyleList" />
+                    android:nestedScrollingEnabled="false" />
 
             </LinearLayout>
 

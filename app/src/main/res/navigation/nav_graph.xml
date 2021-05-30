@@ -29,7 +29,7 @@
             android:defaultValue="@null"
             app:nullable="true"
             android:name="countryDetail"
-            app:argType="com.gowtham.template.models.Country"/>
+            app:argType="com.gowtham.template.models.country.Country"/>
 
     </fragment>
 

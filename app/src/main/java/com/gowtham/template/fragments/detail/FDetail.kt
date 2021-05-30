@@ -5,13 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import coil.load
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.gowtham.template.R
 import com.gowtham.template.databinding.FDetailBinding
+import com.gowtham.template.models.Info
 import com.gowtham.template.models.country.Country
+import com.gowtham.template.models.weather.Weather
+import com.gowtham.template.utils.LoadState
+import com.gowtham.template.utils.LogMessage
+import com.gowtham.template.utils.Utils.loadImage
+import com.gowtham.template.utils.Utils.loadSvgWithPlaceholder
+import com.gowtham.template.utils.assistedViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class FDetail : Fragment() {
@@ -20,16 +32,15 @@ class FDetail : Fragment() {
 
     val args: FDetailArgs by navArgs()
 
-    private val viewModel: DetailViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: DetailViewModel.Factory
+
+    private val viewModel by assistedViewModel { viewModelFactory.create(args.countryDetail, it) }
 
     private lateinit var country: Country
 
     private val adInfo: AdInfo by lazy {
         AdInfo()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
@@ -44,14 +55,30 @@ class FDetail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         country = args.countryDetail!!
-        binding.lifecycleOwner=viewLifecycleOwner
-        binding.country=country
-
+        LogMessage.v("Country $country")
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.country = country
+        viewModel //just to initialize the viewmodel
         binding.imgBack.setOnClickListener {
-            viewModel.callWeatherApi()
-            /*findNavController().popBackStack()*/
+            findNavController().popBackStack()
         }
+        setFlows()
         setDataInView()
+    }
+
+    private fun setFlows() {
+        lifecycleScope.launch {
+            viewModel.state.collect { state ->
+                if (state is LoadState.OnSuccess) {
+                    val weatherData = state.data as Weather
+                    binding.apply {
+                        weather = weatherData
+                        viewWeather.imgWeather.loadImage("https:${weatherData.current.condition.icon}")
+                    }
+                }
+                binding.currentState = state
+            }
+        }
     }
 
     private fun setDataInView() {

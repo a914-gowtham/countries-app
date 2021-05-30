@@ -18,8 +18,8 @@ object BindingAdapters {
 
     @BindingAdapter("showOnSuccess")
     @JvmStatic
-    fun showOnSuccess(view: LinearLayout, state: LoadState) {
-        if(state is LoadState.OnSuccess)
+    fun showOnSuccess(view: View, state: LoadState?) {
+        if(state!=null && state is LoadState.OnSuccess)
             view.show()
         else
             view.gone()
@@ -27,8 +27,8 @@ object BindingAdapters {
 
     @BindingAdapter("showOnLoading")
     @JvmStatic
-    fun showOnLoading(view: ProgressBar, state: LoadState) {
-        if(state is LoadState.OnLoading)
+    fun showOnLoading(view: ProgressBar, state: LoadState?) {
+        if(state!=null && state is LoadState.OnLoading)
             view.show()
         else
             view.gone()
@@ -41,16 +41,6 @@ object BindingAdapters {
             view.show()
         else
             view.gone()
-    }
-
-    @BindingAdapter("app:hideIfEmpty")  // Recommended solution
-    @JvmStatic fun hideIfZero(view: View, number: Boolean) {
-        view.visibility = if (number) View.GONE else View.VISIBLE
-    }
-
-    @BindingAdapter("app:nullableText")  // Recommended solution
-    @JvmStatic fun nullableText(txtView: TextView, str: String?) {
-        txtView.text=if(str.isNullOrBlank()) "Capital unavailable" else str
     }
 
 
