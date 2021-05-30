@@ -61,8 +61,6 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="12dp"
-            android:elevation="7dp"
             app:weather="@{weather}" />
 
         <ProgressBar

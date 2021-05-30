@@ -9,11 +9,14 @@
             type="com.gowtham.template.models.weather.Weather" />
     </data>
 
-    <LinearLayout style="@style/WView">
+    <LinearLayout
+        style="@style/WView"
+        android:background="@drawable/bg_weather"
+        android:gravity="center_vertical">
 
         <TextView
             style="@style/TxtBold"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="24dp"
             android:layout_marginEnd="8dp"
             android:text="@{String.valueOf(weather.current.temp_c)+`°`}"
             tools:text="30.0°" />
@@ -26,12 +29,14 @@
                 style="@style/TxtBold"
                 android:ellipsize="end"
                 android:maxLength="16"
+                android:gravity="end"
                 android:text="@{weather.location.name}"
                 android:textSize="18sp"
                 tools:text="Chennai" />
 
             <TextView
                 style="@style/WView"
+                android:maxWidth="200dp"
                 android:text="@{weather.current.condition.text}"
                 android:textSize="16sp"
                 tools:text="Partly cloud" />
@@ -42,11 +47,11 @@
             android:id="@+id/img_weather"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_marginStart="6dp"
-            android:scaleType="fitXY"
             android:layout_gravity="center_vertical"
-            tools:src="@drawable/ic_weather_182"
-             />
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="12dp"
+            android:scaleType="fitXY"
+            tools:src="@drawable/ic_weather_182" />
 
 
     </LinearLayout>
