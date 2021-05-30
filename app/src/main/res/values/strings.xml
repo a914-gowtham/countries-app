@@ -7,5 +7,6 @@
     <string name="txt_whoops">Whoops!</string>
     <string name="err_net_desc">Slow or no internet connection. \n please check the internet settings</string>
     <string name="txt_search">Search</string>
+    <string name="txt_no_countries_found">No countries found for the keywords.</string>
 
 </resources>

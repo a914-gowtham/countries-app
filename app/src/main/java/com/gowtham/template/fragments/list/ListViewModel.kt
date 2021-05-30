@@ -1,6 +1,7 @@
 package com.gowtham.template.fragments.list
 
 import android.text.Editable
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,8 +24,9 @@ class ListViewModel @Inject constructor(
 
     var lastQuery: String = ""
 
-    val lastFetchedList = MutableLiveData(emptyList<Country>())
-    val showQueryEmptyView = MutableLiveData(false)
+    private val _showQueryEmptyView = MutableLiveData(false)
+
+    val showQueryEmptyView: LiveData<Boolean> = _showQueryEmptyView // Expose an immutable LiveData
 
     val state: StateFlow<LoadState>
         get() = _resultState
@@ -42,17 +44,16 @@ class ListViewModel @Inject constructor(
     private suspend fun fetchQueriedCountries(query: String) {
         val result = mainRepo.getQueriedCountries(query)
         if (result is LoadState.OnSuccess) {
-            lastFetchedList.value = result.data as List<Country>
-            showQueryEmptyView.value = lastFetchedList.value.isNullOrEmpty()
+            val list = result.data as List<Country>
+            _showQueryEmptyView.value = list.isEmpty()
+            LogMessage.v("showQueryEmptyView ${list.isEmpty()}")
         }
         _resultState.value = result
     }
 
     private suspend fun fetchAllCountries() {
-        showQueryEmptyView.value = false
+        _showQueryEmptyView.value = false
         val result = mainRepo.getAllCountries()
-        if (result is LoadState.OnSuccess)
-            lastFetchedList.value = result.data as List<Country>
         _resultState.value = result
     }
 

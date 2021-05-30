@@ -44,5 +44,10 @@ object BindingAdapters {
             view.gone()
     }
 
+    @BindingAdapter("app:hideIfEmpty")  // Recommended solution
+    @JvmStatic fun hideIfZero(view: View, number: Boolean) {
+        view.visibility = if (number) View.GONE else View.VISIBLE
+    }
+
 
 }

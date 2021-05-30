@@ -30,9 +30,9 @@
 
         <TextView
             style="@style/WVView"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="6dp"
-            android:layout_marginEnd="35dp"
+            android:layout_marginEnd="30dp"
             android:gravity="center"
             android:text="@string/err_net_desc"
             android:textSize="14sp" />

@@ -47,6 +47,7 @@ class FList : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.lifecycleOwner = viewLifecycleOwner
         binding.viewmodel = viewModel
         setRecyclerView()
         setObservers()
@@ -55,11 +56,15 @@ class FList : Fragment() {
     private fun setRecyclerView() {
         val staggeredGridLayoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        staggeredGridLayoutManager.gapStrategy =
+            StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
         binding.listCountry.apply {
             layoutManager = staggeredGridLayoutManager
             itemAnimator = null
             adapter = adChat
         }
+
+        /* workaround for staggered layout item moving issue */
         binding.listCountry.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
@@ -79,7 +84,6 @@ class FList : Fragment() {
     private fun setObservers() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
-                LogMessage.v("State $state")
                 binding.currentState = state
                 if (state is LoadState.OnSuccess) {
                     adChat.submitList(state.data as List<Country>)
