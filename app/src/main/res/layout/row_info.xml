@@ -6,7 +6,8 @@
     </data>
 
     <LinearLayout style="@style/WLView"
-        android:padding="6dp">
+        android:padding="6dp"
+        android:layout_marginEnd="8dp">
 
         <RelativeLayout
             style="@style/WVView"
@@ -17,6 +18,7 @@
                 android:id="@+id/txt_icon"
                 style="@style/WVView"
                 android:textSize="22sp"
+                android:textColor="@color/black"
                 tools:text="🌆" />
 
         </RelativeLayout>

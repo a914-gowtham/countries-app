@@ -13,6 +13,7 @@ import coil.decode.SvgDecoder
 import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.transform.RoundedCornersTransformation
+import com.gowtham.template.R
 
 
 object Utils {
@@ -52,6 +53,24 @@ object Utils {
             .crossfade(true)
             .crossfade(300)
             .data(url)
+            .diskCachePolicy(CachePolicy.ENABLED)
+            .target(this)
+            .build()
+
+        imageLoader.enqueue(request)
+    }
+
+    fun ImageView.loadSvgWithPlaceholder(url: String) {
+        val imageLoader = ImageLoader.Builder(this.context)
+            .componentRegistry { add(SvgDecoder(this@loadSvgWithPlaceholder.context)) }
+            .build()
+
+        val request = ImageRequest.Builder(this.context)
+            .crossfade(true)
+            .crossfade(300)
+            .data(url)
+            .placeholder(R.drawable.placeholder_img)
+            .error(R.drawable.placeholder_img)
             .diskCachePolicy(CachePolicy.ENABLED)
             .target(this)
             .build()
