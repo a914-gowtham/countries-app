@@ -1,10 +1,10 @@
 package com.gowtham.template.db
 
 import androidx.room.TypeConverter
-import com.gowtham.template.models.Currency
-import com.gowtham.template.models.Language
-import com.gowtham.template.models.RegionalBloc
-import com.gowtham.template.models.Translations
+import com.gowtham.template.models.country.Currency
+import com.gowtham.template.models.country.Language
+import com.gowtham.template.models.country.RegionalBloc
+import com.gowtham.template.models.country.Translations
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.decodeFromString

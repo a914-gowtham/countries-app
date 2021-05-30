@@ -13,9 +13,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gowtham.template.databinding.FListBinding
-import com.gowtham.template.models.Country
+import com.gowtham.template.models.country.Country
 import com.gowtham.template.utils.LoadState
-import com.gowtham.template.utils.LogMessage
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

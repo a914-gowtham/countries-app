@@ -5,12 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.airbnb.lottie.utils.Utils
-import com.gowtham.template.databinding.RowCountryBinding
 import com.gowtham.template.databinding.RowInfoBinding
-import com.gowtham.template.models.Country
 import com.gowtham.template.utils.Utils.clearNull
-import com.gowtham.template.utils.Utils.loadSvg
 
 
 class AdInfo :

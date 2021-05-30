@@ -4,8 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.gowtham.template.models.Country
-import kotlinx.coroutines.flow.Flow
+import com.gowtham.template.models.country.Country
 
 @Dao
 interface CountryDao {

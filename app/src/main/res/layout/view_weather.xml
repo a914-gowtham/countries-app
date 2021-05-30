@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WView">
+
+    <TextView
+        style="@style/TxtBold"
+        android:textSize="18sp"
+        android:text="Chennai"/>
+
+</RelativeLayout>

@@ -6,15 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.gowtham.template.R
 import com.gowtham.template.databinding.FDetailBinding
-import com.gowtham.template.models.Country
-import com.gowtham.template.utils.Utils.loadSvg
-import com.gowtham.template.utils.Utils.loadSvgWithPlaceholder
+import com.gowtham.template.models.country.Country
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,7 +48,8 @@ class FDetail : Fragment() {
         binding.country=country
 
         binding.imgBack.setOnClickListener {
-            findNavController().popBackStack()
+            viewModel.callWeatherApi()
+            /*findNavController().popBackStack()*/
         }
         setDataInView()
     }

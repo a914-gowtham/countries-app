@@ -1,4 +1,4 @@
-package com.gowtham.template.models
+package com.gowtham.template.models.country
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

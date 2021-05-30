@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gowtham.template.models.Country
+import com.gowtham.template.models.country.Country
 import com.gowtham.template.repo.MainRepository
 import com.gowtham.template.utils.LoadState
 import com.gowtham.template.utils.LogMessage

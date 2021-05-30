@@ -6,7 +6,7 @@
 
         <variable
             name="country"
-            type="com.gowtham.template.models.Country" />
+            type="com.gowtham.template.models.country.Country" />
 
     </data>
 
