@@ -14,9 +14,9 @@ buildscript {
     dependencies {
         classpath(Dependencies.androidPlugin)
         classpath(Dependencies.kotlinPlugin)
-        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.3.5")
-        classpath("com.google.dagger:hilt-android-gradle-plugin:2.36")
-        classpath("org.jetbrains.kotlin:kotlin-serialization:1.5.10")
+        classpath(Dependencies.safeArgsPlugIn)
+        classpath(Dependencies.daggerHiltPlugin)
+        classpath(Dependencies.ktSerializerPlugin)
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

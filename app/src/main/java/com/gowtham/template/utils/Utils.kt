@@ -12,7 +12,6 @@ import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.CachePolicy
 import coil.request.ImageRequest
-import coil.transform.RoundedCornersTransformation
 import com.gowtham.template.R
 
 

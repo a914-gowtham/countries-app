@@ -5,14 +5,23 @@ object Versions {
     /* kotlin */
     const val kotlin = "1.5.10"
     const val kotlinPlugin = "1.5.10"
+    const val ktSerilization = "1.2.1"
 
     /* plugins */
     const val androidPlugin = "4.2.1"
     const val benManes = "0.39.0"
+    const val safeArgsPlugIn = "2.3.5"
+    const val daggerHiltPlugin = "2.36"
+    const val ktSerializerPlugin = "1.5.10"
+
 
     /* libraries */
     const val appCompat = "1.3.0"
     const val coreKtx = "1.5.0"
+    const val legacySupport = "1.0.0"
+    const val retrofitConverter = "2.3.0"
+    const val coilSvg = "1.2.1"
+    const val flexBox = "3.0.0"
     const val constraintLayout = "2.0.4"
     const val material = "1.3.0"
 
@@ -28,14 +37,23 @@ object Dependencies {
     /* kotlin */
     const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
     const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPlugin}"
-    const val coil = "io.coil-kt:coil:1.2.1"
+    const val coil = "io.coil-kt:coil:${Versions.coilSvg}"
+    const val coilSvg = "io.coil-kt:coil-svg:${Versions.coilSvg}"
     const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-    const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.1"
+    const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.ktSerilization}"
     const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.21"
 
     /* plugin */
     const val androidPlugin = "com.android.tools.build:gradle:${Versions.androidPlugin}"
     const val benManes = "com.github.ben-manes.versions"
+    const val safeArgsPlugIn = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsPlugIn}"
+    const val daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltPlugin}"
+    const val ktSerializerPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.ktSerializerPlugin}"
+    const val kotlinKapt = "kotlin-kapt"
+    const val daggerHilt = "dagger.hilt.android.plugin"
+    const val safeArgs = "androidx.navigation.safeargs.kotlin"
+    const val parcelize = "kotlin-parcelize"
+    const val serialization = "kotlinx-serialization"
 
     /* libraries */
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
@@ -47,6 +65,9 @@ object Dependencies {
     const val lottie = "com.airbnb.android:lottie:3.7.0"
     const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
     const val logging = "com.squareup.okhttp3:logging-interceptor:4.5.0"
+    const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
+    const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverter}"
+    const val flexBox = "com.google.android.flexbox:flexbox:${Versions.flexBox}"
 
     /* jetpack libraries */
     const val hilt = "com.google.dagger:hilt-android:2.36"
@@ -75,12 +96,17 @@ object Dependencies {
         add(material)
         add(constraintLayout)
         add(coil)
+        add(coilSvg)
         add(ktSerializer)
         add(mutliDex)
         add(actKtx)
         add(lottie)
         add(retrofit)
         add(logging)
+
+        add(legacySupport)
+        add(retrofitConverter)
+        add(flexBox)
         add(ktReflect)
 
         add(hilt)
