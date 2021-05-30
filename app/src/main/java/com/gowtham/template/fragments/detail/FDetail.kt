@@ -6,14 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.gowtham.template.R
 import com.gowtham.template.databinding.FDetailBinding
-import com.gowtham.template.fragments.list.AdCountries
 import com.gowtham.template.models.Country
+import com.gowtham.template.utils.Utils.loadSvg
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,45 +45,49 @@ class FDetail : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         country = args.countryDetail!!
-        binding.apply {
-            lifecycleOwner = viewLifecycleOwner
-            viewmodel = viewModel
-            country = country
-        }
-        setDataInView()
+        binding.lifecycleOwner=viewLifecycleOwner
+        binding.country=country
 
+        setDataInView()
     }
 
     private fun setDataInView() {
-        val titles = resources.getStringArray(R.array.info_titles).toList()
-        val icons = resources.getStringArray(R.array.info_icons).toList()
+        binding.imageViewCollapsing.loadSvg(country.flag)
         val linearLayoutManager = LinearLayoutManager(requireContext())
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
 
         binding.listDetail.apply {
-            layoutManager=linearLayoutManager
+            layoutManager = linearLayoutManager
             adapter = adInfo
         }
+        adInfo.submitList(getDetailList())
+    }
 
+    private fun getDetailList(): List<Info> {
         val listOfInfos = mutableListOf<Info>()
+        val titles = resources.getStringArray(R.array.info_titles).toList()
+        val icons = resources.getStringArray(R.array.info_icons).toList()
         titles.forEachIndexed { index, title ->
-            when (index) {
-                0 -> listOfInfos.add(Info(icons[index], title, country.region))
+            val info = when (index) {
+                0 -> Info(icons[index], title, country.region)
+                1 -> Info(icons[index], title, country.population.toString())
+                2 -> Info(
+                    icons[index],
+                    title,
+                    country.languages.map { it.name }.joinToString(",")
+                )
 
-                1 ->
-                    listOfInfos.add(Info(icons[index], title, country.population.toString()))
+                3 -> Info(icons[index], title, country.demonym)
 
-                2 ->
-                    listOfInfos.add(Info(icons[index], title, country.languages.joinToString(",")))
-
-                3 ->
-                    listOfInfos.add(Info(icons[index], title, country.demonym))
-
-                4 ->
-                    listOfInfos.add(Info(icons[index], title, country.currencies.joinToString(",")))
+                else -> Info(
+                    icons[index],
+                    title,
+                    country.currencies.map { it.name }.joinToString(",")
+                )
             }
+            listOfInfos.add(info)
         }
-        adInfo.submitList(listOfInfos)
+        return listOfInfos
     }
 
 }

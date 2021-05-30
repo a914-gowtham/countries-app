@@ -8,10 +8,6 @@
             name="country"
             type="com.gowtham.template.models.Country" />
 
-        <variable
-            name="viewmodel"
-            type="com.gowtham.template.fragments.detail.DetailViewModel" />
-
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -28,7 +24,7 @@
                 android:minHeight="140dp"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <androidx.appcompat.widget.AppCompatImageView
+                <ImageView
                     android:id="@+id/imageViewCollapsing"
                     style="@style/FView"
                     android:fitsSystemWindows="true"
@@ -44,6 +40,7 @@
             style="@style/WView"
             android:layout_margin="12dp"
             android:elevation="7dp"
+            android:id="@+id/img_back"
             android:src="@drawable/ic_arrow_back" />
 
         <androidx.core.widget.NestedScrollView
@@ -79,11 +76,13 @@
                     android:layout_gravity="start"
                     android:layout_marginTop="16dp"
                     android:text="@string/txt_more_info"
+                    android:layout_marginStart="8dp"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/list_detail"
+                    android:nestedScrollingEnabled="false"
                     style="@style/StyleList" />
 
             </LinearLayout>

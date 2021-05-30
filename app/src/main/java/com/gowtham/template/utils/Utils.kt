@@ -59,23 +59,6 @@ object Utils {
         imageLoader.enqueue(request)
     }
 
-    fun ImageView.loadSvg(url: String,cornerRadius: Float) {
-        val imageLoader = ImageLoader.Builder(this.context)
-            .componentRegistry { add(SvgDecoder(this@loadSvg.context)) }
-            .build()
-
-        val request = ImageRequest.Builder(this.context)
-            .crossfade(true)
-            .crossfade(300)
-            .data(url)
-            .transformations(RoundedCornersTransformation(cornerRadius))
-            .diskCachePolicy(CachePolicy.ENABLED)
-            .target(this)
-            .build()
-
-        imageLoader.enqueue(request)
-    }
-
     fun clearNull(str: String?): String{
         return if(str.isNullOrBlank()) "Data unavailable" else str
     }

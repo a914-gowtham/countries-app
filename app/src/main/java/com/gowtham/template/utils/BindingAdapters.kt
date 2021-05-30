@@ -10,11 +10,10 @@ import com.gowtham.template.utils.Utils.loadSvg
 
 object BindingAdapters {
 
-    @BindingAdapter("app:imageUrl")
+    @BindingAdapter("imageUrl")
     @JvmStatic
-    fun loadImage(imageView: ImageView, url: String) {
-
-        imageView.loadSvg(url,12f)
+    fun imageUrl(imageView: ImageView, url: String) {
+        imageView.loadSvg(url)
     }
 
     @BindingAdapter("showOnSuccess")
