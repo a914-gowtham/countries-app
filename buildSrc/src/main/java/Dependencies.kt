@@ -6,6 +6,7 @@ object Versions {
     const val kotlin = "1.5.10"
     const val kotlinPlugin = "1.5.10"
     const val ktSerilization = "1.2.1"
+    const val ktReflect = "1.4.21"
 
     /* plugins */
     const val androidPlugin = "4.2.1"
@@ -24,6 +25,16 @@ object Versions {
     const val flexBox = "3.0.0"
     const val constraintLayout = "2.0.4"
     const val material = "1.3.0"
+    const val multiDex = "2.0.1"
+    const val actKtx = "1.2.3"
+    const val lottie = "3.7.0"
+    const val retrofit = "2.9.0"
+    const val logging = "4.5.0"
+    const val hilt = "2.36"
+    const val recyclerView = "1.2.0"
+    const val lifeCycleExt = "2.2.0"
+    const val navigation = "2.3.5"
+    const val room = "2.4.0-alpha02"
 
     /* test libraries */
     const val jUnit = "4.13.2"
@@ -41,7 +52,7 @@ object Dependencies {
     const val coilSvg = "io.coil-kt:coil-svg:${Versions.coilSvg}"
     const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.ktSerilization}"
-    const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:1.4.21"
+    const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.ktReflect}"
 
     /* plugin */
     const val androidPlugin = "com.android.tools.build:gradle:${Versions.androidPlugin}"
@@ -60,25 +71,25 @@ object Dependencies {
     const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val material = "com.google.android.material:material:${Versions.material}"
-    const val mutliDex = "androidx.multidex:multidex:2.0.1"
-    const val actKtx = "androidx.activity:activity-ktx:1.2.3"
-    const val lottie = "com.airbnb.android:lottie:3.7.0"
-    const val retrofit = "com.squareup.retrofit2:retrofit:2.9.0"
-    const val logging = "com.squareup.okhttp3:logging-interceptor:4.5.0"
+    const val multiDex = "androidx.multidex:multidex:${Versions.multiDex}"
+    const val actKtx = "androidx.activity:activity-ktx:${Versions.actKtx}"
+    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.logging}"
     const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
     const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverter}"
     const val flexBox = "com.google.android.flexbox:flexbox:${Versions.flexBox}"
 
     /* jetpack libraries */
-    const val hilt = "com.google.dagger:hilt-android:2.36"
-    const val recyclerView = "androidx.recyclerview:recyclerview:1.2.0"
-    const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExt}"
     const val navigationFragment =
-        "androidx.navigation:navigation-fragment-ktx:2.3.5" //Android Navigation Architecture
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}" //Android Navigation Architecture
     const val navigationUi =
-        "androidx.navigation:navigation-ui-ktx:2.3.5"  //Android Navigation Architecture
-    const val roomRunTime = "androidx.room:room-runtime:2.4.0-alpha02" //Room
-    const val roomExt = "androidx.room:room-ktx:2.4.0-alpha02"  //Room
+        "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"  //Android Navigation Architecture
+    const val roomRunTime = "androidx.room:room-runtime:${Versions.room}" //Room
+    const val roomExt = "androidx.room:room-ktx:${Versions.room}"  //Room
 
     /* test libraries */
     const val jUnit = "junit:junit:${Versions.jUnit}"
@@ -86,8 +97,8 @@ object Dependencies {
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 
     /* kapt */
-    const val hiltKapt = "com.google.dagger:hilt-android-compiler:2.36"  //Hilt
-    const val roomKapt = "androidx.room:room-compiler:2.4.0-alpha02" //Room
+    const val hiltKapt = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"  //Hilt
+    const val roomKapt = "androidx.room:room-compiler:${Versions.room}" //Room
 
     val appLibraries = arrayListOf<String>().apply {
         add(ktStdLib)
@@ -98,7 +109,7 @@ object Dependencies {
         add(coil)
         add(coilSvg)
         add(ktSerializer)
-        add(mutliDex)
+        add(multiDex)
         add(actKtx)
         add(lottie)
         add(retrofit)
