@@ -6,5 +6,6 @@
     <string name="retry">Retry</string>
     <string name="txt_whoops">Whoops!</string>
     <string name="err_net_desc">Slow or no internet connection. \n please check the internet settings</string>
+    <string name="txt_search">Search</string>
 
 </resources>

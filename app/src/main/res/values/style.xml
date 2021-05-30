@@ -58,4 +58,16 @@
         <item name="android:layout_height">wrap_content</item>
     </style>
 
+    <style name="SearchViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableStart">@drawable/ic_search_black</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">12dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:drawablePadding">6dp</item>
+        <item name="android:hint">@string/txt_search</item>
+        <item name="android:inputType">textCapWords</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
 </resources>

@@ -1,6 +1,6 @@
 package com.gowtham.template.fragments.list
 
-import android.content.Context
+import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,10 +8,7 @@ import com.gowtham.template.models.Country
 import com.gowtham.template.repo.MainRepository
 import com.gowtham.template.utils.LoadState
 import com.gowtham.template.utils.LogMessage
-import com.gowtham.template.utils.Utils
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -24,7 +21,7 @@ class ListViewModel @Inject constructor(
 
     private val _resultState = MutableStateFlow<LoadState>(LoadState.OnLoading)
 
-    var lastQuery = ""
+    var lastQuery: String = ""
 
     val lastFetchedList = MutableLiveData(emptyList<Country>())
     val showQueryEmptyView = MutableLiveData(false)
@@ -38,6 +35,7 @@ class ListViewModel @Inject constructor(
     }
 
     private fun loadInitialList() = viewModelScope.launch {
+        _resultState.value = LoadState.OnLoading
         fetchAllCountries()
     }
 
@@ -52,7 +50,6 @@ class ListViewModel @Inject constructor(
 
     private suspend fun fetchAllCountries() {
         showQueryEmptyView.value = false
-        _resultState.value = LoadState.OnLoading
         val result = mainRepo.getAllCountries()
         if (result is LoadState.OnSuccess)
             lastFetchedList.value = result.data as List<Country>
@@ -60,16 +57,17 @@ class ListViewModel @Inject constructor(
     }
 
 
-    fun searchCountry(searchQuery: String) = viewModelScope.launch {
-        lastQuery = searchQuery
-        if (searchQuery.isBlank())
+     fun searchCountry(searchQuery: Editable?) = viewModelScope.launch {
+        lastQuery=searchQuery.toString().trim()
+        if (lastQuery.isEmpty())
             fetchAllCountries()
         else
-            fetchQueriedCountries(searchQuery)
+            fetchQueriedCountries(lastQuery)
     }
 
     fun retry() {
         viewModelScope.launch {
+            _resultState.value = LoadState.OnLoading
             fetchAllCountries()
         }
     }

@@ -1,6 +1,8 @@
 package com.gowtham.template.fragments.list
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,17 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.gowtham.template.R
 import com.gowtham.template.databinding.FListBinding
 import com.gowtham.template.models.Country
 import com.gowtham.template.utils.LoadState
 import com.gowtham.template.utils.LogMessage
-import com.gowtham.template.utils.gone
-import com.gowtham.template.utils.show
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -84,9 +81,14 @@ class FList : Fragment() {
             viewModel.state.collect { state ->
                 LogMessage.v("State $state")
                 binding.currentState = state
-                if (state is LoadState.OnSuccess)
+                if (state is LoadState.OnSuccess) {
                     adChat.submitList(state.data as List<Country>)
-                else if(state is LoadState.OnFailure)
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        binding.listCountry.scrollToPosition(
+                            0
+                        )
+                    }, 200)
+                } else if (state is LoadState.OnFailure)
                     binding.viewNoInternet.lottieView.playAnimation()
             }
         }
