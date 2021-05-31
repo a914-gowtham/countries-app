@@ -58,7 +58,7 @@ class FDetail : Fragment() {
         LogMessage.v("Country $country")
         binding.lifecycleOwner = viewLifecycleOwner
         binding.country = country
-        viewModel //just to initialize the viewmodel
+        viewModel //making a fake call to initialize the viewmodel
         binding.imgBack.setOnClickListener {
             findNavController().popBackStack()
         }

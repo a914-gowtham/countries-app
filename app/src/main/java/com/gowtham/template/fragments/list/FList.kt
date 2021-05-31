@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.gms.location.*
 import com.gowtham.template.R
 import com.gowtham.template.databinding.FListBinding
+import com.gowtham.template.models.ScrollEvent
 import com.gowtham.template.models.country.Country
 import com.gowtham.template.models.weather.Weather
 import com.gowtham.template.utils.*
@@ -32,6 +33,9 @@ import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 @AndroidEntryPoint
@@ -118,14 +122,9 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 binding.currentState = state
-                if (state is LoadState.OnSuccess) {
+                if (state is LoadState.OnSuccess)
                     adChat.submitList(state.data as List<Country>)
-                 /*   Handler(Looper.getMainLooper()).postDelayed({
-                        binding.listCountry.scrollToPosition(
-                            0
-                        )
-                    }, 200)*/
-                } else if (state is LoadState.OnFailure)
+                 else if (state is LoadState.OnFailure)
                     binding.viewNoInternet.lottieView.playAnimation()
             }
         }
@@ -213,5 +212,24 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
             }
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onNewListFetched(event: ScrollEvent){
+        Handler(Looper.getMainLooper()).postDelayed({
+            binding.listCountry.scrollToPosition(
+                0
+            )
+        }, 200)
     }
 }

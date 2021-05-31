@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gowtham.template.models.ScrollEvent
 import com.gowtham.template.models.country.Country
 import com.gowtham.template.repo.MainRepository
 import com.gowtham.template.repo.WeatherRepo
@@ -17,6 +18,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
 @HiltViewModel
@@ -61,12 +63,14 @@ class ListViewModel @Inject constructor(
             LogMessage.v("showQueryEmptyView ${list.isEmpty()}")
         }
         _resultState.value = result
+        EventBus.getDefault().post(ScrollEvent(emptyList()))
     }
 
     private suspend fun fetchAllCountries() {
         _showQueryEmptyView.value = false
         val result = mainRepo.getAllCountries()
         _resultState.value = result
+        EventBus.getDefault().post(ScrollEvent(emptyList()))
     }
 
 
