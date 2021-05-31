@@ -15,9 +15,10 @@
         android:gravity="center_vertical">
 
         <TextView
-            style="@style/TxtBold"
+            style="@style/WeatherCelsius"
             android:layout_marginStart="24dp"
-            android:layout_marginEnd="8dp"
+            android:textSize="16sp"
+            android:layout_marginTop="6dp"
             android:text="@{String.valueOf(weather.current.temp_c)+`°`}"
             tools:text="30.0°" />
 
@@ -26,31 +27,25 @@
             android:gravity="end">
 
             <TextView
-                style="@style/TxtBold"
-                android:ellipsize="end"
-                android:maxLength="16"
-                android:gravity="end"
+                style="@style/WeatherTitle"
                 android:text="@{weather.location.name}"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 tools:text="Chennai" />
 
             <TextView
-                style="@style/WView"
+                style="@style/WeatherSubTitle"
                 android:maxWidth="200dp"
                 android:text="@{weather.current.condition.text}"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 tools:text="Partly cloud" />
 
         </LinearLayout>
 
         <ImageView
             android:id="@+id/img_weather"
+            style="@style/WeatherImg"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_gravity="center_vertical"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="12dp"
-            android:scaleType="fitXY"
             tools:src="@drawable/ic_weather_182" />
 
 
