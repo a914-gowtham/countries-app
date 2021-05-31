@@ -15,6 +15,14 @@
             type="com.gowtham.template.utils.LoadState" />
 
         <variable
+            name="currentWeatherState"
+            type="com.gowtham.template.utils.LoadState" />
+
+        <variable
+            name="weather"
+            type="com.gowtham.template.models.weather.Weather" />
+
+        <variable
             name="viewmodel"
             type="com.gowtham.template.fragments.list.ListViewModel" />
     </data>
@@ -29,30 +37,41 @@
                     android:id="@+id/toolbar"
                     style="@style/VView">
 
-                    <RelativeLayout style="@style/LView">
+                    <LinearLayout
+                        style="@style/LView"
+                        android:gravity="center_vertical">
 
                         <TextView
                             style="@style/TxtBold"
+                            android:text="@string/app_name"
                             android:textColor="@color/white"
-                            android:textSize="24sp"
-                            android:layout_centerVertical="true"
-                            android:text="@string/app_name" />
+                            android:textSize="16sp" />
 
-                        <include
-                            android:layout_alignParentEnd="true"
-                            layout="@layout/view_weather_home"
-                            android:layout_height="wrap_content"
-                            android:layout_width="wrap_content" />
+                        <RelativeLayout style="@style/WView">
 
-                        <ImageView
-                            android:id="@+id/img_weather"
-                            style="@style/StyleWeatherProgress"
-                            android:src="@drawable/ic_cloudy"
-                             />
+                            <include
+                                android:id="@+id/view_weather"
+                                layout="@layout/view_weather_home"
+                                visibleOnSuccess="@{currentWeatherState}"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                app:weather="@{weather}" />
 
-                        <ProgressBar style="@style/StyleWeatherProgress" />
+                            <ImageView
+                                android:id="@+id/img_weather"
+                                style="@style/StyleWeatherProgress"
+                                showOnFailure="@{currentWeatherState}"
+                                android:src="@drawable/ic_cloudy" />
 
-                    </RelativeLayout>
+                            <ProgressBar
+                                style="@style/StyleWeatherProgress"
+                                showOnLoading="@{currentWeatherState}" />
+
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
 
                 </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.AppBarLayout>

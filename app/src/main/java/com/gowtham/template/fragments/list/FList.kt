@@ -19,11 +19,13 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.gms.location.*
 import com.gowtham.template.databinding.FListBinding
 import com.gowtham.template.models.country.Country
+import com.gowtham.template.models.weather.Weather
 import com.gowtham.template.utils.Constants
 import com.gowtham.template.utils.Constants.REQ_GPS
 import com.gowtham.template.utils.LoadState
 import com.gowtham.template.utils.LogMessage
 import com.gowtham.template.utils.Utils
+import com.gowtham.template.utils.Utils.loadImage
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.EasyPermissions.somePermissionPermanentlyDenied
 import com.vmadalin.easypermissions.annotations.AfterPermissionGranted
@@ -125,10 +127,15 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         }
 
         lifecycleScope.launch {
-            viewModel.weatherState.collect {
-
-              /*  if (it is LoadState.OnSuccess)
-                    fusedLocationClient.removeLocationUpdates(locationCallback)*/
+            viewModel.weatherState.collect { state ->
+                LogMessage.v("Weather state $state")
+                binding.currentWeatherState = state
+                if (state is LoadState.OnSuccess) {
+                    val weather = state.data as Weather
+                    binding.weather = weather
+                    binding.viewWeather.imgWeather.loadImage("https:${weather.current.condition.icon}")
+                    fusedLocationClient.removeLocationUpdates(locationCallback)
+                }
             }
         }
     }
@@ -156,7 +163,6 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         val perms =
             arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
         if (EasyPermissions.hasPermissions(requireContext(), *perms)) {
-//          fusedLocationClient.removeLocationUpdates(locationCallback)
             Utils.checkLocationPermission(
                 requireActivity(), fusedLocationClient,
                 locationCallback, mLocationRequest
@@ -176,7 +182,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(p0: LocationResult) {
             super.onLocationResult(p0)
-            LogMessage.v("Locationresult ${p0.lastLocation.latitude} ${p0.lastLocation.longitude}")
+            viewModel.fetchWeatherByLocation(p0.lastLocation)
         }
 
         override fun onLocationAvailability(p0: LocationAvailability) {
@@ -193,7 +199,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
                     Utils.checkLocationPermission(
                         requireActivity(), fusedLocationClient,
                         locationCallback, mLocationRequest
-                    ){
+                    ) {
                         //gpsIsEnabled is just enabled, waiting to get latLng on locationCallback
                         viewModel.setWeatherLoadState()
                     }

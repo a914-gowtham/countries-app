@@ -43,5 +43,14 @@ object BindingAdapters {
             view.gone()
     }
 
+    @BindingAdapter("visibleOnSuccess")
+    @JvmStatic
+    fun visibleOnSuccess(view: View, state: LoadState) {
+        if(state is LoadState.OnSuccess)
+            view.show()
+        else
+            view.hide()
+    }
+
 
 }
