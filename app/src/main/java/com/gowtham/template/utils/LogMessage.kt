@@ -9,12 +9,12 @@ object LogMessage {
 
     internal fun v(msg: String) {
         if (logVisible)
-            Log.v("Countries-App",msg)
+            Log.v("Countries-App", msg)
     }
 
     internal fun e(msg: String) {
         if (logVisible)
-            Log.e("Countries-App",msg)
+            Log.e("Countries-App", msg)
     }
 
 }

@@ -105,7 +105,7 @@ class ListViewModel @Inject constructor(
     }
 
     private val typingThread = Runnable {
-       searchCountry()
+        searchCountry()
     }
 
     private fun removeTypingCallbacks() {

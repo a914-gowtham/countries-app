@@ -27,21 +27,20 @@ class DetailViewModel @AssistedInject constructor(
 
     init {
         LogMessage.v("DetailViewModel init")
-        if(country!=null && !country.capital.isNullOrBlank())
+        if (country != null && !country.capital.isNullOrBlank())
             fetchWeather(country.capital)
     }
 
     fun fetchWeather(city: String) = viewModelScope.launch {
         LogMessage.v("fetchWeather $city")
-        _resultState.value=LoadState.OnLoading
-        _resultState.value= weatherRepo.getWeatherByCity(city)
+        _resultState.value = LoadState.OnLoading
+        _resultState.value = weatherRepo.getWeatherByCity(city)
     }
 
     @AssistedFactory
     interface Factory {
         fun create(country: Country?, savedStateHandle: SavedStateHandle): DetailViewModel
     }
-
 
 
 }

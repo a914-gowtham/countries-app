@@ -13,43 +13,27 @@ import com.google.android.material.snackbar.Snackbar
 import com.gowtham.template.R
 import retrofit2.Response
 
-fun Context.toast(msg: String){
-   Toast.makeText(this,msg,Toast.LENGTH_SHORT).show()
+fun snack(context: Activity, msg: String) {
+    Snackbar.make(context.findViewById(android.R.id.content), msg, 2000).show()
 }
 
-fun Context.toastLong(msg: String){
-    Toast.makeText(this,msg,Toast.LENGTH_LONG).show()
+fun snackNet(context: Activity) {
+    Snackbar.make(context.findViewById(android.R.id.content), R.string.err_no_net, 2000).show()
 }
 
-fun Context.toast(msg: Int){
-    Toast.makeText(this,getString(msg),Toast.LENGTH_SHORT).show()
+fun View.gone() {
+    this.visibility = View.GONE
 }
 
-fun Context.toastNet(){
-    Toast.makeText(this, R.string.err_no_net,Toast.LENGTH_SHORT).show()
+fun View.show() {
+    this.visibility = View.VISIBLE
 }
 
-fun snack(context: Activity,msg: String){
-    Snackbar.make(context.findViewById(android.R.id.content),msg,2000).show()
+fun View.hide() {
+    this.visibility = View.INVISIBLE
 }
 
-fun snackNet(context: Activity){
-    Snackbar.make(context.findViewById(android.R.id.content),R.string.err_no_net,2000).show()
-}
-
-fun View.gone(){
-    this.visibility=View.GONE
-}
-
-fun View.show(){
-    this.visibility=View.VISIBLE
-}
-
-fun View.hide(){
-    this.visibility=View.INVISIBLE
-}
-
-fun ProgressBar.toggle(show: Boolean){
+fun ProgressBar.toggle(show: Boolean) {
     if (show)
         this.show()
     else
@@ -72,7 +56,7 @@ fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.updateList(list: List<T
     )
 }
 
-fun  <T, VH : RecyclerView.ViewHolder> ListAdapter<T,VH>.addRestorePolicy(){
+fun <T, VH : RecyclerView.ViewHolder> ListAdapter<T, VH>.addRestorePolicy() {
     stateRestorationPolicy =
         RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
 }

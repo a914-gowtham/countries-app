@@ -29,9 +29,9 @@ class AdInfo :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Info) {
-            binding.txtIcon.text= item.icon
-            binding.txtTitle.text= item.title
-            binding.txtDetail.text= clearNull(item.detail)
+            binding.txtIcon.text = item.icon
+            binding.txtTitle.text = item.title
+            binding.txtDetail.text = clearNull(item.detail)
 
             binding.executePendingBindings()
         }

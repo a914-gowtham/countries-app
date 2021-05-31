@@ -23,7 +23,7 @@ class AdCountries :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val viewHolder = holder as CountryViewHolder
-        viewHolder.bind(getItem(position),onItemClickListener)
+        viewHolder.bind(getItem(position), onItemClickListener)
     }
 
 

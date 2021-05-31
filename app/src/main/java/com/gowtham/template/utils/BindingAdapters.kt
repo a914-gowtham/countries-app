@@ -19,7 +19,7 @@ object BindingAdapters {
     @BindingAdapter("showOnSuccess")
     @JvmStatic
     fun showOnSuccess(view: View, state: LoadState?) {
-        if(state!=null && state is LoadState.OnSuccess)
+        if (state != null && state is LoadState.OnSuccess)
             view.show()
         else
             view.gone()
@@ -28,7 +28,7 @@ object BindingAdapters {
     @BindingAdapter("showOnLoading")
     @JvmStatic
     fun showOnLoading(view: View, state: LoadState?) {
-        if(state!=null && state is LoadState.OnLoading)
+        if (state != null && state is LoadState.OnLoading)
             view.show()
         else
             view.gone()
@@ -37,7 +37,7 @@ object BindingAdapters {
     @BindingAdapter("showOnFailure")
     @JvmStatic
     fun showOnFailure(view: View, state: LoadState) {
-        if(state is LoadState.OnFailure)
+        if (state is LoadState.OnFailure)
             view.show()
         else
             view.gone()
@@ -46,7 +46,7 @@ object BindingAdapters {
     @BindingAdapter("visibleOnSuccess")
     @JvmStatic
     fun visibleOnSuccess(view: View, state: LoadState) {
-        if(state is LoadState.OnSuccess)
+        if (state is LoadState.OnSuccess)
             view.show()
         else
             view.hide()
@@ -55,16 +55,16 @@ object BindingAdapters {
     @BindingAdapter("visibleOnLoading")
     @JvmStatic
     fun visibleOnLoading(view: View, state: LoadState?) {
-        if(state!=null && state is LoadState.OnLoading)
+        if (state != null && state is LoadState.OnLoading)
             view.show()
         else
             view.hide()
     }
 
-    @BindingAdapter("showIfValidCapital","loadState")
+    @BindingAdapter("showIfValidCapital", "loadState")
     @JvmStatic
-    fun showIfValidCapital(view: View, capital: String?,state: LoadState) {
-        if(!capital.isNullOrBlank() && state is LoadState.OnFailure)
+    fun showIfValidCapital(view: View, capital: String?, state: LoadState) {
+        if (!capital.isNullOrBlank() && state is LoadState.OnFailure)
             view.show()
         else
             view.gone()

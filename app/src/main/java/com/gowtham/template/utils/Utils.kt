@@ -168,8 +168,8 @@ object Utils {
         return gpsEnabled
     }
 
-    fun canCallWeatherApi(context: Context): Boolean{
-        val hasLocationPermission= EasyPermissions.hasPermissions(context, *LOCATION_PER)
+    fun canCallWeatherApi(context: Context): Boolean {
+        val hasLocationPermission = EasyPermissions.hasPermissions(context, *LOCATION_PER)
         return isLocationEnabled(context) && isNetConnected(context) && hasLocationPermission
     }
 

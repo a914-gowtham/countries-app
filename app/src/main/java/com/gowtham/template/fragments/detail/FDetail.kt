@@ -27,7 +27,7 @@ class FDetail : Fragment() {
 
     private lateinit var binding: FDetailBinding
 
-    val args: FDetailArgs by navArgs()
+    private val args: FDetailArgs by navArgs()
 
     @Inject
     lateinit var viewModelFactory: DetailViewModel.Factory

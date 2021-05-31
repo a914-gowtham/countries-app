@@ -86,7 +86,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
             fastestInterval = 5000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
-        if(canCallWeatherApi(requireContext()))
+        if (canCallWeatherApi(requireContext()))
             getLocationData()
     }
 
@@ -124,7 +124,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
                 binding.currentState = state
                 if (state is LoadState.OnSuccess)
                     adChat.submitList(state.data as List<Country>)
-                 else if (state is LoadState.OnFailure)
+                else if (state is LoadState.OnFailure)
                     binding.viewNoInternet.lottieView.playAnimation()
             }
         }
@@ -225,7 +225,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onNewListFetched(event: ScrollEvent){
+    fun onNewListFetched(event: ScrollEvent) {
         Handler(Looper.getMainLooper()).postDelayed({
             binding.listCountry.scrollToPosition(
                 0
