@@ -18,7 +18,7 @@
             style="@style/WeatherCelsius"
             android:layout_marginStart="24dp"
             android:textSize="16sp"
-            android:layout_marginTop="6dp"
+            android:layout_marginTop="10dp"
             android:text="@{String.valueOf(weather.current.temp_c)+`°`}"
             tools:text="30.0°" />
 
