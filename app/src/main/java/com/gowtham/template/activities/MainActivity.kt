@@ -40,4 +40,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        val navHostFragment = supportFragmentManager.fragments.first() as? NavHostFragment
+        if (navHostFragment != null) {
+            val childFragments = navHostFragment.childFragmentManager.fragments
+            childFragments.forEach { fragment ->
+                fragment.onRequestPermissionsResult(requestCode, permissions, grantResults)
+            }
+        }
+    }
 }

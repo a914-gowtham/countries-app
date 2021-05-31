@@ -149,7 +149,6 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
     }
 
     override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
-
     }
 
     override fun onRequestPermissionsResult(
@@ -161,8 +160,9 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
     }
 
-    @AfterPermissionGranted(Constants.REQ_LOCATION_PERMISSION)
+    @AfterPermissionGranted(123)
     private fun getLocationData() {
+        LogMessage.v("dsdsdsd")
         if (EasyPermissions.hasPermissions(requireContext(), *LOCATION_PER)) {
             Utils.checkLocationPermission(
                 requireActivity(), fusedLocationClient,
@@ -174,7 +174,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         } else {
             EasyPermissions.requestPermissions(
                 requireActivity(), getString(R.string.location_info),
-                Constants.REQ_LOCATION_PERMISSION, *LOCATION_PER
+                123, *LOCATION_PER
             )
         }
     }
