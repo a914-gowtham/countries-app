@@ -28,20 +28,18 @@ class ListViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _resultState = MutableStateFlow<LoadState>(LoadState.OnLoading)
+    val state: StateFlow<LoadState>
+        get() = _resultState
 
     private val _weatherState = MutableStateFlow<LoadState>(LoadState.OnFailure(""))
+    val weatherState: StateFlow<LoadState>
+        get() = _weatherState
 
     var lastQuery: String = ""
 
     private val _showQueryEmptyView = MutableLiveData(false)
 
     val showQueryEmptyView: LiveData<Boolean> = _showQueryEmptyView // Expose an immutable LiveData
-
-    val state: StateFlow<LoadState>
-        get() = _resultState
-
-    val weatherState: StateFlow<LoadState>
-        get() = _weatherState
 
     private val typingHandler = Handler(Looper.getMainLooper())
 
@@ -58,6 +56,7 @@ class ListViewModel @Inject constructor(
     private suspend fun fetchQueriedCountries(query: String) {
         val result = mainRepo.getQueriedCountries(query)
         if (result is LoadState.OnSuccess) {
+            @Suppress("UNCHECKED_CAST")
             val list = result.data as List<Country>
             _showQueryEmptyView.value = list.isEmpty()
             LogMessage.v("showQueryEmptyView ${list.isEmpty()}")

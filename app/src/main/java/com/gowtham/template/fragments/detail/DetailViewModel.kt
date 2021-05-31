@@ -21,7 +21,6 @@ class DetailViewModel @AssistedInject constructor(
 ) : ViewModel() {
 
     private val _resultState = MutableStateFlow<LoadState>(LoadState.OnFailure(""))
-
     val state: StateFlow<LoadState>
         get() = _resultState
 

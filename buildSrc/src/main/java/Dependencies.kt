@@ -4,17 +4,17 @@ object Versions {
 
     /* kotlin */
     const val kotlin = "1.5.10"
-    const val kotlinPlugin = "1.5.10"
     const val ktSerilization = "1.2.1"
     const val ktReflect = "1.4.21"
 
     /* plugins */
     const val androidPlugin = "4.2.1"
+    const val kotlinPlugin = "1.5.10"
     const val benManes = "0.39.0"
+    const val detekt = "1.16.0"
     const val safeArgsPlugIn = "2.3.5"
     const val daggerHiltPlugin = "2.36"
     const val ktSerializerPlugin = "1.5.10"
-
 
     /* libraries */
     const val appCompat = "1.3.0"
@@ -35,6 +35,9 @@ object Versions {
     const val lifeCycleExt = "2.2.0"
     const val navigation = "2.3.5"
     const val room = "2.4.0-alpha02"
+    const val location = "18.0.0"
+    const val eventBus = "3.2.0"
+    const val easyPermission = "1.0.0"
 
     /* test libraries */
     const val jUnit = "4.13.2"
@@ -46,59 +49,52 @@ object Versions {
 object Dependencies {
 
     /* kotlin */
-    const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-    const val kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlinPlugin}"
-    const val coil = "io.coil-kt:coil:${Versions.coilSvg}"
-    const val coilSvg = "io.coil-kt:coil-svg:${Versions.coilSvg}"
-    const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-    const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.ktSerilization}"
-    const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.ktReflect}"
+    private const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    private const val coil = "io.coil-kt:coil:${Versions.coilSvg}"
+    private const val coilSvg = "io.coil-kt:coil-svg:${Versions.coilSvg}"
+    private const val ktStdLib= "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    private const val ktSerializer = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.ktSerilization}"
+    private const val ktReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.ktReflect}"
 
-    /* plugin */
-    const val androidPlugin = "com.android.tools.build:gradle:${Versions.androidPlugin}"
-    const val benManes = "com.github.ben-manes.versions"
-    const val safeArgsPlugIn = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.safeArgsPlugIn}"
-    const val daggerHiltPlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.daggerHiltPlugin}"
-    const val ktSerializerPlugin = "org.jetbrains.kotlin:kotlin-serialization:${Versions.ktSerializerPlugin}"
-    const val kotlinKapt = "kotlin-kapt"
-    const val daggerHilt = "dagger.hilt.android.plugin"
-    const val safeArgs = "androidx.navigation.safeargs.kotlin"
-    const val parcelize = "kotlin-parcelize"
-    const val serialization = "kotlinx-serialization"
+
 
     /* libraries */
-    const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
-    const val constraintLayout =
+    private const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
+    private const val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    const val material = "com.google.android.material:material:${Versions.material}"
-    const val multiDex = "androidx.multidex:multidex:${Versions.multiDex}"
-    const val actKtx = "androidx.activity:activity-ktx:${Versions.actKtx}"
-    const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
-    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
-    const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.logging}"
-    const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
-    const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverter}"
-    const val flexBox = "com.google.android.flexbox:flexbox:${Versions.flexBox}"
+    private const val material = "com.google.android.material:material:${Versions.material}"
+    private const val multiDex = "androidx.multidex:multidex:${Versions.multiDex}"
+    private const val actKtx = "androidx.activity:activity-ktx:${Versions.actKtx}"
+    private const val lottie = "com.airbnb.android:lottie:${Versions.lottie}"
+    private const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    private const val logging = "com.squareup.okhttp3:logging-interceptor:${Versions.logging}"
+    private const val legacySupport = "androidx.legacy:legacy-support-v4:${Versions.legacySupport}"
+    private const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofitConverter}"
+    private const val flexBox = "com.google.android.flexbox:flexbox:${Versions.flexBox}"
+
+    private const val location = "com.google.android.gms:play-services-location:${Versions.location}"
+    private const val eventBus = "org.greenrobot:eventbus:${Versions.eventBus}"
+    private const val easyPermission = "com.vmadalin:easypermissions-ktx:${Versions.easyPermission}"
 
     /* jetpack libraries */
-    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
-    const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
-    const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExt}"
-    const val navigationFragment =
+    private const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    private const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    private const val lifeCycleExt = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExt}"
+    private const val navigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}" //Android Navigation Architecture
-    const val navigationUi =
+    private const val navigationUi =
         "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"  //Android Navigation Architecture
-    const val roomRunTime = "androidx.room:room-runtime:${Versions.room}" //Room
-    const val roomExt = "androidx.room:room-ktx:${Versions.room}"  //Room
+    private const val roomRunTime = "androidx.room:room-runtime:${Versions.room}" //Room
+    private const val roomExt = "androidx.room:room-ktx:${Versions.room}"  //Room
 
     /* test libraries */
-    const val jUnit = "junit:junit:${Versions.jUnit}"
-    const val extJUnit = "androidx.test.ext:junit:${Versions.extJUnit}"
-    const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
+    private const val jUnit = "junit:junit:${Versions.jUnit}"
+    private const val extJUnit = "androidx.test.ext:junit:${Versions.extJUnit}"
+    private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 
     /* kapt */
-    const val hiltKapt = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"  //Hilt
-    const val roomKapt = "androidx.room:room-compiler:${Versions.room}" //Room
+    private const val hiltKapt = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"  //Hilt
+    private const val roomKapt = "androidx.room:room-compiler:${Versions.room}" //Room
 
     val appLibraries = arrayListOf<String>().apply {
         add(ktStdLib)
@@ -119,6 +115,10 @@ object Dependencies {
         add(retrofitConverter)
         add(flexBox)
         add(ktReflect)
+
+        add(location)
+        add(eventBus)
+        add(easyPermission)
 
         add(hilt)
         add(recyclerView)

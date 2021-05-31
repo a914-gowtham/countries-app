@@ -94,7 +94,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         val staggeredGridLayoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         staggeredGridLayoutManager.gapStrategy =
-            StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS;
+            StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS
         binding.listCountry.apply {
             layoutManager = staggeredGridLayoutManager
             itemAnimator = null
@@ -103,10 +103,6 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
 
         /* workaround for staggered layout item moving issue */
         binding.listCountry.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 staggeredGridLayoutManager.invalidateSpanAssignments()
             }
@@ -157,12 +153,11 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
     }
 
     @AfterPermissionGranted(123)
     private fun getLocationData() {
-        LogMessage.v("dsdsdsd")
         if (EasyPermissions.hasPermissions(requireContext(), *LOCATION_PER)) {
             Utils.checkLocationPermission(
                 requireActivity(), fusedLocationClient,
@@ -184,10 +179,6 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         override fun onLocationResult(p0: LocationResult) {
             super.onLocationResult(p0)
             viewModel.fetchWeatherByLocation(p0.lastLocation)
-        }
-
-        override fun onLocationAvailability(p0: LocationAvailability) {
-            super.onLocationAvailability(p0)
         }
     }
 
