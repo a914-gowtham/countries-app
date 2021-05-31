@@ -2,7 +2,7 @@ package com.gowtham.template.di
 
 import com.gowtham.template.api.ApiService
 import com.gowtham.template.utils.Constants.BASE_URL
-import com.gowtham.template.utils.Constants.CLIMATE_BASE_URL
+import com.gowtham.template.utils.Constants.WEATHER_API_BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -45,7 +45,7 @@ object AppModule {
     fun provideClimateApiData(client: OkHttpClient): ApiService {
         return Retrofit.Builder()
             .client(client)
-            .baseUrl(CLIMATE_BASE_URL)
+            .baseUrl(WEATHER_API_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)

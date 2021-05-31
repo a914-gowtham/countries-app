@@ -9,10 +9,23 @@ class WeatherRepo @Inject constructor(
     private val apiHelperImpl: ApiHelperImpl,
 ) {
 
-
     suspend fun getWeatherByCity(city: String): LoadState {
         return try {
             val response = apiHelperImpl.getClimateAndAirData(city)
+            val weather = response.body()!!
+            LoadState.OnSuccess(data = weather)
+        } catch (t: Throwable) {
+            t.printStackTrace()
+            when (t) {
+                is IOException -> LoadState.OnFailure("Network failure")
+                else -> LoadState.OnFailure("Conversion Error")
+            }
+        }
+    }
+
+    suspend fun getWeatherByLatLng(latLng: String): LoadState {
+        return try {
+            val response = apiHelperImpl.getClimateAndAirData(latLng)
             val weather = response.body()!!
             LoadState.OnSuccess(data = weather)
         } catch (t: Throwable) {

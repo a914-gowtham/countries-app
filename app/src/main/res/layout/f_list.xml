@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ContentDescription">
 
     <data>
 
@@ -26,9 +27,34 @@
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
-                    style="@style/VView"
-                    app:title="Countries App"
-                    app:titleTextColor="@color/white" />
+                    style="@style/VView">
+
+                    <RelativeLayout style="@style/LView">
+
+                        <TextView
+                            style="@style/TxtBold"
+                            android:textColor="@color/white"
+                            android:textSize="24sp"
+                            android:layout_centerVertical="true"
+                            android:text="@string/app_name" />
+
+                        <include
+                            android:layout_alignParentEnd="true"
+                            layout="@layout/view_weather_home"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content" />
+
+                        <ImageView
+                            android:id="@+id/img_weather"
+                            style="@style/StyleWeatherProgress"
+                            android:src="@drawable/ic_cloudy"
+                             />
+
+                        <ProgressBar style="@style/StyleWeatherProgress" />
+
+                    </RelativeLayout>
+
+                </androidx.appcompat.widget.Toolbar>
             </com.google.android.material.appbar.AppBarLayout>
 
             <LinearLayout

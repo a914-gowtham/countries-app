@@ -1,5 +1,6 @@
 package com.gowtham.template.fragments.list
 
+import android.location.Location
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gowtham.template.models.country.Country
 import com.gowtham.template.repo.MainRepository
+import com.gowtham.template.repo.WeatherRepo
 import com.gowtham.template.utils.LoadState
 import com.gowtham.template.utils.LogMessage
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,10 +19,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(
-    private val mainRepo: MainRepository
+    private val mainRepo: MainRepository,
+    private val weatherRepo: WeatherRepo
 ) : ViewModel() {
 
     private val _resultState = MutableStateFlow<LoadState>(LoadState.OnLoading)
+
+    private val _weatherState = MutableStateFlow<LoadState>(LoadState.OnFailure(""))
 
     var lastQuery: String = ""
 
@@ -30,6 +35,9 @@ class ListViewModel @Inject constructor(
 
     val state: StateFlow<LoadState>
         get() = _resultState
+
+    val weatherState: StateFlow<LoadState>
+        get() = _weatherState
 
     init {
         LogMessage.v("ListViewModel init")
@@ -71,6 +79,18 @@ class ListViewModel @Inject constructor(
             _resultState.value = LoadState.OnLoading
             fetchAllCountries()
         }
+    }
+
+    fun fetchWeatherByLocation(location: Location) = viewModelScope.launch {
+        val latLng="${location.latitude},${location.longitude}"
+//        if(_weatherState.value is LoadState.OnFailure) {
+//            _weatherState.value=LoadState.OnLoading
+            _weatherState.value = weatherRepo.getWeatherByCity(latLng)
+//        }
+    }
+
+    fun setWeatherLoadState(){
+        _weatherState.value=LoadState.OnLoading
     }
 
 }

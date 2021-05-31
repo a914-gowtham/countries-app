@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TestApp</string>
+    <string name="app_name">Countries App</string>
 
     <string name="err_no_net">No Internet Connection</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>

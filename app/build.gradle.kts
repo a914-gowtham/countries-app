@@ -48,6 +48,8 @@ android {
 }
 
 dependencies {
+    implementation("com.google.android.gms:play-services-location:18.0.0")
+    implementation("com.vmadalin:easypermissions-ktx:1.0.0")
     implementations(Dependencies.appLibraries)
     kapts(Dependencies.kaptLibraries)
     testImplementations(Dependencies.testLibraries)
