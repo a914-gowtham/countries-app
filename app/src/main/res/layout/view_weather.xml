@@ -37,6 +37,7 @@
             <TextView
                 style="@style/WeatherSubTitle"
                 android:maxWidth="160dp"
+                android:gravity="end"
                 android:text="@{weather.current.condition.text}"
                 android:textSize="14sp"
                 tools:text="Partly cloud" />
@@ -49,7 +50,6 @@
             android:layout_width="65dp"
             android:layout_height="65dp"
             tools:src="@drawable/ic_weather_182" />
-
 
     </LinearLayout>
 </layout>

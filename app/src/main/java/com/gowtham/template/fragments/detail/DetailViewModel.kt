@@ -31,7 +31,7 @@ class DetailViewModel @AssistedInject constructor(
             fetchWeather(country.capital)
     }
 
-    private fun fetchWeather(city: String) = viewModelScope.launch {
+    fun fetchWeather(city: String) = viewModelScope.launch {
         LogMessage.v("fetchWeather $city")
         _resultState.value=LoadState.OnLoading
         _resultState.value= weatherRepo.getWeatherByCity(city)

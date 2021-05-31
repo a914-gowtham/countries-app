@@ -27,7 +27,7 @@ object BindingAdapters {
 
     @BindingAdapter("showOnLoading")
     @JvmStatic
-    fun showOnLoading(view: ProgressBar, state: LoadState?) {
+    fun showOnLoading(view: View, state: LoadState?) {
         if(state!=null && state is LoadState.OnLoading)
             view.show()
         else
@@ -52,5 +52,22 @@ object BindingAdapters {
             view.hide()
     }
 
+    @BindingAdapter("visibleOnLoading")
+    @JvmStatic
+    fun visibleOnLoading(view: View, state: LoadState?) {
+        if(state!=null && state is LoadState.OnLoading)
+            view.show()
+        else
+            view.hide()
+    }
+
+    @BindingAdapter("showIfValidCapital","loadState")
+    @JvmStatic
+    fun showIfValidCapital(view: View, capital: String?,state: LoadState) {
+        if(!capital.isNullOrBlank() && state is LoadState.OnFailure)
+            view.show()
+        else
+            view.gone()
+    }
 
 }

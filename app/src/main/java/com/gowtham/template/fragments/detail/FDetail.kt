@@ -8,18 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import coil.load
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.gowtham.template.R
 import com.gowtham.template.databinding.FDetailBinding
 import com.gowtham.template.models.Info
 import com.gowtham.template.models.country.Country
 import com.gowtham.template.models.weather.Weather
-import com.gowtham.template.utils.LoadState
-import com.gowtham.template.utils.LogMessage
+import com.gowtham.template.utils.*
 import com.gowtham.template.utils.Utils.loadImage
 import com.gowtham.template.utils.Utils.loadSvgWithPlaceholder
-import com.gowtham.template.utils.assistedViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -59,14 +56,21 @@ class FDetail : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.country = country
         viewModel //making a fake call to initialize the viewmodel
+
         binding.imgBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        setFlows()
+        binding.imgWeather.setOnClickListener {
+            if (Utils.isNetConnected(requireContext()))
+                viewModel.fetchWeather(country.capital.toString())
+            else
+                TToast.showToast(requireContext(), R.string.err_no_net)
+        }
+        subscribeObservers()
         setDataInView()
     }
 
-    private fun setFlows() {
+    private fun subscribeObservers() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 if (state is LoadState.OnSuccess) {
@@ -84,8 +88,6 @@ class FDetail : Fragment() {
     private fun setDataInView() {
         binding.imageViewCollapsing.loadSvgWithPlaceholder(country.flag)
         val linearLayoutManager = FlexboxLayoutManager(requireContext())
-//        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-
         binding.listDetail.apply {
             layoutManager = linearLayoutManager
             adapter = adInfo
@@ -93,6 +95,10 @@ class FDetail : Fragment() {
         adInfo.submitList(getDetailList())
     }
 
+    /*
+    * returns formatted list with more info
+    * ex: Info(icon,title,content)
+    * */
     private fun getDetailList(): List<Info> {
         val listOfInfos = mutableListOf<Info>()
         val titles = resources.getStringArray(R.array.info_titles).toList()

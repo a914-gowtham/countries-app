@@ -60,6 +60,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
                                 app:weather="@{weather}" />
 
                             <ImageView
@@ -68,9 +69,17 @@
                                 showOnFailure="@{currentWeatherState}"
                                 android:src="@drawable/ic_cloudy" />
 
-                            <ProgressBar
-                                style="@style/StyleWeatherProgress"
-                                showOnLoading="@{currentWeatherState}" />
+                            <com.airbnb.lottie.LottieAnimationView
+                              android:layout_width="60dp"
+                                android:layout_height="60dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_marginEnd="8dp"
+                                android:scaleY="1"
+                                android:scaleX="1"
+                                app:lottie_autoPlay="true"
+                                app:lottie_loop="true"
+                                app:lottie_rawRes="@raw/lottie_progress"
+                                visibleOnLoading="@{currentWeatherState}" />
 
 
                         </RelativeLayout>
