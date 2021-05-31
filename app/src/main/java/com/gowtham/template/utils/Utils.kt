@@ -1,5 +1,6 @@
 package com.gowtham.template.utils
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -23,11 +24,15 @@ import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
 import com.gowtham.template.R
 import com.gowtham.template.utils.Constants.REQ_GPS
+import com.vmadalin.easypermissions.EasyPermissions
 
 
 object Utils {
 
-    fun hasInternetConnection(context: Context): Boolean {
+    val LOCATION_PER =
+        arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+
+    fun isNetConnected(context: Context): Boolean {
         val connectivityManager = context.getSystemService(
             Context.CONNECTIVITY_SERVICE
         ) as ConnectivityManager
@@ -93,8 +98,6 @@ object Utils {
             crossfade(true)
             crossfade(300)
             diskCachePolicy(CachePolicy.ENABLED)
-            /*  placeholder(R.drawable.ic_other_user)
-              error(R.drawable.ic_other_user)*/
         }
     }
 
@@ -163,6 +166,11 @@ object Utils {
         } catch (ex: Exception) {
         }
         return gpsEnabled
+    }
+
+    fun canCallWeatherApi(context: Context): Boolean{
+        val hasLocationPermission= EasyPermissions.hasPermissions(context, *LOCATION_PER)
+        return isLocationEnabled(context) && isNetConnected(context) && hasLocationPermission
     }
 
 }

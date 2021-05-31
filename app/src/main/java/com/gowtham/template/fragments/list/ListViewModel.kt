@@ -1,6 +1,8 @@
 package com.gowtham.template.fragments.list
 
 import android.location.Location
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,6 +41,8 @@ class ListViewModel @Inject constructor(
     val weatherState: StateFlow<LoadState>
         get() = _weatherState
 
+    private val typingHandler = Handler(Looper.getMainLooper())
+
     init {
         LogMessage.v("ListViewModel init")
         loadInitialList()
@@ -66,12 +70,10 @@ class ListViewModel @Inject constructor(
     }
 
 
-     fun searchCountry(searchQuery: Editable?) = viewModelScope.launch {
-        lastQuery=searchQuery.toString().trim()
-        if (lastQuery.isEmpty())
-            fetchAllCountries()
-        else
-            fetchQueriedCountries(lastQuery)
+    fun onTxtChanged(searchQuery: Editable?) {
+        lastQuery = searchQuery.toString().trim()
+        removeTypingCallbacks()
+        typingHandler.postDelayed(typingThread, 300)
     }
 
     fun retry() {
@@ -81,16 +83,29 @@ class ListViewModel @Inject constructor(
         }
     }
 
-    fun fetchWeatherByLocation(location: Location) = viewModelScope.launch {
-        val latLng="${location.latitude},${location.longitude}"
-//        if(_weatherState.value is LoadState.OnFailure) {
-//            _weatherState.value=LoadState.OnLoading
-            _weatherState.value = weatherRepo.getWeatherByCity(latLng)
-//        }
+    private fun searchCountry() = viewModelScope.launch {
+        if (lastQuery.isEmpty())
+            fetchAllCountries()
+        else
+            fetchQueriedCountries(lastQuery)
     }
 
-    fun setWeatherLoadState(){
-        _weatherState.value=LoadState.OnLoading
+    fun fetchWeatherByLocation(location: Location) = viewModelScope.launch {
+        val latLng = "${location.latitude},${location.longitude}"
+        _weatherState.value = weatherRepo.getWeatherByCity(latLng)
+    }
+
+    fun setWeatherLoadState() {
+        if (_weatherState.value is LoadState.OnFailure)
+            _weatherState.value = LoadState.OnLoading
+    }
+
+    private val typingThread = Runnable {
+       searchCountry()
+    }
+
+    private fun removeTypingCallbacks() {
+        typingHandler.removeCallbacks(typingThread)
     }
 
 }

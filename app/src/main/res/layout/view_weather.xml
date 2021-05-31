@@ -30,11 +30,13 @@
                 style="@style/WeatherTitle"
                 android:text="@{weather.location.name}"
                 android:textSize="16sp"
+                android:maxLines="1"
+                android:maxWidth="160dp"
                 tools:text="Chennai" />
 
             <TextView
                 style="@style/WeatherSubTitle"
-                android:maxWidth="200dp"
+                android:maxWidth="160dp"
                 android:text="@{weather.current.condition.text}"
                 android:textSize="14sp"
                 tools:text="Partly cloud" />

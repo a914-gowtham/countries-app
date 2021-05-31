@@ -29,7 +29,9 @@
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout style="@style/FView">
 
-        <LinearLayout style="@style/FView">
+        <LinearLayout
+            style="@style/FView"
+            android:focusableInTouchMode="true">
 
             <com.google.android.material.appbar.AppBarLayout style="@style/VView">
 
@@ -43,6 +45,8 @@
 
                         <TextView
                             style="@style/TxtBold"
+                            android:focusable="true"
+                            android:focusableInTouchMode="true"
                             android:text="@string/app_name"
                             android:textColor="@color/white"
                             android:textSize="18sp" />
@@ -90,7 +94,7 @@
                     <EditText
                         android:id="@+id/edt_search"
                         style="@style/SearchViewStyle"
-                        android:afterTextChanged="@{(text) -> viewmodel.searchCountry(text)}"
+                        android:afterTextChanged="@{(text) -> viewmodel.onTxtChanged(text)}"
                         android:imeOptions="actionDone"
                         android:text="@{viewmodel.lastQuery}" />
 

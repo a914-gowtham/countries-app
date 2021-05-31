@@ -10,6 +10,7 @@
     <string name="txt_no_countries_found">No countries found for the keywords.</string>
     <string name="txt_more_info">More info</string>
     <string name="txt_cap_unavailable">Capital unavailable</string>
+    <string name="location_info">We need permissions to get your location data</string>
 
     <string name="txt_region">Region</string>
     <string name="txt_popu">Population</string>

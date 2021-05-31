@@ -1,6 +1,5 @@
 package com.gowtham.template.fragments.list
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
@@ -17,14 +16,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.android.gms.location.*
+import com.gowtham.template.R
 import com.gowtham.template.databinding.FListBinding
 import com.gowtham.template.models.country.Country
 import com.gowtham.template.models.weather.Weather
-import com.gowtham.template.utils.Constants
+import com.gowtham.template.utils.*
 import com.gowtham.template.utils.Constants.REQ_GPS
-import com.gowtham.template.utils.LoadState
-import com.gowtham.template.utils.LogMessage
-import com.gowtham.template.utils.Utils
+import com.gowtham.template.utils.Utils.LOCATION_PER
+import com.gowtham.template.utils.Utils.canCallWeatherApi
 import com.gowtham.template.utils.Utils.loadImage
 import com.vmadalin.easypermissions.EasyPermissions
 import com.vmadalin.easypermissions.EasyPermissions.somePermissionPermanentlyDenied
@@ -64,13 +63,16 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewmodel = viewModel
-        initLocation()
-        setRecyclerView()
-        setObservers()
 
         binding.imgWeather.setOnClickListener {
-            getLocationData()
+            if (Utils.isNetConnected(requireContext()))
+                getLocationData()
+            else
+                TToast.showToast(requireContext(), R.string.err_no_net)
         }
+        setRecyclerView()
+        initLocation()
+        subscribeObservers()
     }
 
     private fun initLocation() {
@@ -80,6 +82,8 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
             fastestInterval = 5000
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
+        if(canCallWeatherApi(requireContext()))
+            getLocationData()
     }
 
     private fun setRecyclerView() {
@@ -110,17 +114,17 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
         }
     }
 
-    private fun setObservers() {
+    private fun subscribeObservers() {
         lifecycleScope.launch {
             viewModel.state.collect { state ->
                 binding.currentState = state
                 if (state is LoadState.OnSuccess) {
                     adChat.submitList(state.data as List<Country>)
-                    Handler(Looper.getMainLooper()).postDelayed({
+                 /*   Handler(Looper.getMainLooper()).postDelayed({
                         binding.listCountry.scrollToPosition(
                             0
                         )
-                    }, 200)
+                    }, 200)*/
                 } else if (state is LoadState.OnFailure)
                     binding.viewNoInternet.lottieView.playAnimation()
             }
@@ -160,9 +164,7 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
 
     @AfterPermissionGranted(Constants.REQ_LOCATION_PERMISSION)
     private fun getLocationData() {
-        val perms =
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
-        if (EasyPermissions.hasPermissions(requireContext(), *perms)) {
+        if (EasyPermissions.hasPermissions(requireContext(), *LOCATION_PER)) {
             Utils.checkLocationPermission(
                 requireActivity(), fusedLocationClient,
                 locationCallback, mLocationRequest
@@ -172,8 +174,8 @@ class FList : Fragment(), EasyPermissions.PermissionCallbacks {
             }
         } else {
             EasyPermissions.requestPermissions(
-                requireActivity(), "We need permissions to get your location data",
-                Constants.REQ_LOCATION_PERMISSION, *perms
+                requireActivity(), getString(R.string.location_info),
+                Constants.REQ_LOCATION_PERMISSION, *LOCATION_PER
             )
         }
     }
