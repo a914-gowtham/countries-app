@@ -5,7 +5,7 @@ object Versions {
     /* kotlin */
     const val kotlin = "1.5.10"
     const val ktSerilization = "1.2.1"
-    const val ktReflect = "1.4.21"
+    const val ktReflect = "1.5.10"
 
     /* plugins */
     const val androidPlugin = "4.2.1"
@@ -92,6 +92,14 @@ object Dependencies {
     private const val extJUnit = "androidx.test.ext:junit:${Versions.extJUnit}"
     private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
 
+
+    /* android test libraries */
+    private const val testCoroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.2.1"
+    private const val testCore = "androidx.arch.core:core-testing:2.1.0"
+    private const val testTruth = "com.google.truth:truth:1.0.1"
+    private const val testHilt = "com.google.dagger:hilt-android-testing:2.35"
+    private const val testHiltCompiler = "com.google.dagger:hilt-android-compiler:2.35"
+
     /* kapt */
     private const val hiltKapt = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"  //Hilt
     private const val roomKapt = "androidx.room:room-compiler:${Versions.room}" //Room
@@ -135,9 +143,19 @@ object Dependencies {
     }
 
     val androidTestLibraries = arrayListOf<String>().apply {
+        add(jUnit)
         add(extJUnit)
         add(espressoCore)
+        add(testCoroutine)
+        add(testCore)
+        add(testTruth)
+        add(testHilt)
     }
+
+    val kaptTestLibraries = arrayListOf<String>().apply {
+        add(testHiltCompiler)
+    }
+
 
     val testLibraries = arrayListOf<String>().apply {
         add(jUnit)
@@ -161,6 +179,12 @@ fun DependencyHandler.implementations(list: List<String>) {
 fun DependencyHandler.androidTestImplementations(list: List<String>) {
     list.forEach { dependency ->
         add("androidTestImplementation", dependency)
+    }
+}
+
+fun DependencyHandler.kaptAndroidTests(list: List<String>) {
+    list.forEach { dependency ->
+        add("kaptAndroidTest", dependency)
     }
 }
 

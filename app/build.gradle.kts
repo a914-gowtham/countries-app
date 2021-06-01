@@ -52,6 +52,7 @@ dependencies {
     kapts(Dependencies.kaptLibraries)
     testImplementations(Dependencies.testLibraries)
     androidTestImplementations(Dependencies.androidTestLibraries)
+    kaptAndroidTests(Dependencies.kaptTestLibraries)
 }
 repositories {
     mavenCentral()
