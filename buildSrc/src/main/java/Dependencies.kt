@@ -9,9 +9,9 @@ object Versions {
 
     /* plugins */
     const val androidPlugin = "4.2.1"
-    const val kotlinPlugin = "1.5.10"
+    const val kotlinPlugin =     "1.5.10"
     const val benManes = "0.39.0"
-    const val detekt = "1.16.0"
+    const val detekt = "1.17.1"
     const val safeArgsPlugIn = "2.3.5"
     const val daggerHiltPlugin = "2.36"
     const val ktSerializerPlugin = "1.5.10"
