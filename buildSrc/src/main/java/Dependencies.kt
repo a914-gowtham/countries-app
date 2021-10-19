@@ -159,6 +159,7 @@ object Dependencies {
 
     val testLibraries = arrayListOf<String>().apply {
         add(jUnit)
+        add(testTruth)
     }
 }
 

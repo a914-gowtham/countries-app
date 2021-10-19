@@ -49,7 +49,12 @@ android {
 
 dependencies {
     implementations(Dependencies.appLibraries)
+    implementation("io.reactivex.rxjava3:rxjava:3.1.2")
+    implementation("io.reactivex.rxjava3:rxandroid:3.0.0")
+    implementation("io.reactivex.rxjava3:rxkotlin:3.0.1")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
     kapts(Dependencies.kaptLibraries)
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.2")
     testImplementations(Dependencies.testLibraries)
     androidTestImplementations(Dependencies.androidTestLibraries)
     kaptAndroidTests(Dependencies.kaptTestLibraries)

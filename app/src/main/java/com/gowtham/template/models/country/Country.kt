@@ -33,5 +33,10 @@ data class Country(
     val subregion: String,
     val timezones: List<String>,
     val topLevelDomain: List<String>,
-    val translations: Translations?
 ) : Parcelable
+
+data class Country2(
+    @PrimaryKey
+    var id: Int? = null,
+    val name: String,
+)
